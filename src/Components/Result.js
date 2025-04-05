@@ -24,3 +24,4 @@ const Result = ({ score, total }) => {
     </div>
   );
 };
+export default Result

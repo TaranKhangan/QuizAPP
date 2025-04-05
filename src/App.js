@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import {Quiz} from './Quiz';
-import {Result} from './Result';
-import { useState } from 'react';
+import {Quiz} from './Components/Quiz';
+import {Result} from './Components/Result';
+import React, { useState } from 'react';
 
 const App = ()=>{
   const [score, setScore] = useState(0);

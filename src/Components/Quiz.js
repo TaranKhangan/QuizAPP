@@ -1,8 +1,8 @@
-import React from "react";
+
 import React, { useState,useEffect } from "react";
 import '.../App.css';
 
-const Quiz = ({ onQuizComplete }) => {
+const Quiz = ({ onQuizComplete}) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
     const [timeLeft, setTimeLeft] = useState(60); // 60 seconds total
@@ -76,3 +76,4 @@ const Quiz = ({ onQuizComplete }) => {
       </div>
     );
   };
+  export default Quiz
