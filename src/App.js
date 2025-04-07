@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
-import {Quiz} from './Components/Quiz';
-import {Result} from './Components/Result';
+import Quiz from './Components/Quiz';
+import Result from './Components/Result';
 import React, { useState } from 'react';
 
 const App = ()=>{
@@ -17,7 +17,7 @@ const App = ()=>{
     <div className="app-container">
       <h1>Quiz App</h1>
       {isQuizOver ? (
-        <Result score={score} total={questions.length} />
+       <Result score={score} total={2} />
       ) : (
         <Quiz onQuizComplete={handleQuizComplete} />
       )}
