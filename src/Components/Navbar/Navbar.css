@@ -11,11 +11,12 @@
     width: calc(100% - 20px); /* 10px margin on each side */
     margin: 0.624rem;
     background: hsl(120, 3.70%, 94.70%);
-    background: linear-gradient(90deg, rgba(241,242,241,1) 4%, rgba(232,240,248,1) 33%, rgba(241,245,249,1) 98%);
+    background: linear-gradient(90deg, rgb(224, 224, 252) 4%, rgb(233, 235, 238) 33%, rgb(211, 226, 241) 98%);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5375rem 1.56rem;
+    border: 2px solid white;
     border-radius: 4.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -97,7 +98,7 @@
   .login-btn {
     padding: 0.5rem 1.25rem;
     border: none;
-    background-color: #93c5fd;
+    background-color:rgb(107, 162, 224);
     border-radius: 1.25rem;
     cursor: pointer;
     font-weight: 500;
@@ -105,14 +106,14 @@
   }
   
   .login-btn:hover {
-    background-color: #60a5fa; 
+    background-color:rgb(108, 158, 219); 
     color: white;
   }
   
   .signup-btn {
     padding: 0.5rem 1.25rem;
     border: none;
-    background-color: #1e3a8a; 
+    background-color:rgb(52, 79, 155); 
     color: white;
     border-radius: 1.25rem;
     cursor: pointer;
@@ -121,7 +122,7 @@
   }
   
   .signup-btn:hover {
-    background-color: #3b82f6; 
+    background-color:rgb(35, 102, 209); 
   }
 
   /* Menu Icon Styles */
