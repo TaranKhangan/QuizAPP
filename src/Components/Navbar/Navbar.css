@@ -10,8 +10,8 @@
     top: 0;
     width: calc(100% - 20px); /* 10px margin on each side */
     margin: 0.624rem;
-    background: hsl(120, 3.70%, 94.70%);
-    background: linear-gradient(90deg, rgb(224, 224, 252) 4%, rgb(233, 235, 238) 33%, rgb(211, 226, 241) 98%);
+    background: #f1f2f1;
+    background: linear-gradient(90deg, #e0e0fc 4%, #e9ebee 33%, #d3e2f1 98%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,7 +25,8 @@
   .logo-container {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.45rem;
+    margin : 0;
   }
   
   .nav-logo {
@@ -96,22 +97,24 @@
   }
   
   .login-btn {
-    padding: 0.5rem 1.25rem;
-    border: none;
-    background-color:rgb(107, 162, 224);
+    padding: 0.5rem 0.735rem;
+    border: 2px solid rgb(186, 199, 240);
+    background-color:rgb(184, 210, 240);
     border-radius: 1.25rem;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .login-btn:hover {
-    background-color:rgb(108, 158, 219); 
+    background-color:rgb(60, 94, 136); 
     color: white;
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
   }
   
   .signup-btn {
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem 0.735rem;
     border: none;
     background-color:rgb(52, 79, 155); 
     color: white;
@@ -123,6 +126,8 @@
   
   .signup-btn:hover {
     background-color:rgb(35, 102, 209); 
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
   }
 
   /* Menu Icon Styles */

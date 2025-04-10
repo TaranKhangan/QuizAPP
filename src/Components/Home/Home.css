@@ -74,39 +74,50 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x : auto;
+    white-space: nowrap;
     
   }
 
-  /*
+  
+ button {
+  padding: 0.65rem 0.725rem ;
+  border-radius: 4rem !important;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
   .container .login-btn {
     background: #f1f5f9;
-    color: #0E1F2F;
-    border: 2px solid #0E1F2F;
+    color: #2a5e8f ;
+    border: 2px solid rgb(192, 218, 243) ;
+    transition: all 0.3s ease;
 }
 
 .container .login-btn:hover {
-    background: #0E1F2F;
+    background: #2a5e8f ;
     transform: translateY(-0.125rem);
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .container .signup-btn {
-    background: #0E1F2F;
+    background: #2a5e8f ;
     color: white;
     border: 2px solid #ffffff;
+    transition: all 0.3s ease;
 }
 
 .container .signup-btn:hover {
-    background: rgb(36, 54, 71);
+    background: #4675a0 ;
     color: white;
     transform: translateY(-0.125rem);
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
 }
-  */
+  /*
  button {
     padding: 0.65rem 1.12rem !important;
-    border: 2px solid rgb(208, 214, 219) !important;/*********/
+    border: 2px solid rgb(208, 214, 219) !important;
     border-radius: 4rem !important;
     font-size: 1rem;
     cursor: pointer;
@@ -114,8 +125,8 @@
   }
   
   .login-btn {
-    background: #f1f5f9 !important;/*********/
-    color: #2a5e8f !important;/****/
+    background: #f1f5f9 !important;
+    color: #2a5e8f !important;
     border: 2px solidrgb(184, 199, 212) !important;
 
   }
@@ -132,7 +143,7 @@
     border: 2px solid rgb(210, 226, 241) !important;
   }
   .signup-btn:hover {
-    background:rgb(70, 117, 160) !important;
+    background:#4675a0 !important;
     color: white !important;
     transform: translateY(-0.125rem) !important;
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2) !important;
@@ -201,11 +212,11 @@
     button {
       padding: 0.5rem 1.25rem;
       font-size: 0.75rem;
-      width: 100%; /* Full-width buttons on small screens */
+      
     }
   
     .buttons {
-      flex-direction: column;
+      
       gap: 0.75rem;
     }
   }
