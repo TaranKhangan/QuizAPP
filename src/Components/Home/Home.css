@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -10,34 +11,61 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background:#1e385f;
-    background: linear-gradient(135deg, #1e385f 40%, rgba(241,245,249,1) 40%, rgba(146,158,170,1) 80%, #1e385f 10%);
-
-   /* background: #020349;
-    
-    linear-gradient(135deg, #020349 40%, rgba(241,245,249,1) 40%, rgba(146,158,170,1) 80%, #020349 10%);*/
+    background: #ffffff;
+    /*background: linear-gradient(45deg,rgb(244, 246, 252) 40%,  #F8FAFC 60%);*/
     overflow-x: hidden;
   }
 
     .container {
     text-align: center;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 1rem;
     max-width: 90%;
     margin: 1rem;
     animation: fadeIn 1.5s ease-in-out;
   }
+
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4.5rem;
+  }
+  
+  .text-content {
+    flex: 1;
+    text-align: center;
+    max-width: 40%;
+    margin-right: 4rem;
+  }
+  
+  .image-content {
+    
+    display: flex;
+    justify-content: flex-end;
+    max-width: 45%;
+    margin-left: 3rem;
+  }
+  
+  .book-header {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    max-height: 400px; /* Adjust based on your image */
+    object-fit: contain; /* Ensures image doesn’t stretch */
+  }
+
   .logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem; /* Space between logo and name */
+    gap: 0.5rem;
     margin-bottom: 1.5rem; /* Match original logo margin-bottom */
 }
   .logo {
     width: 3rem;
     height: 3rem;
-    background: linear-gradient(45deg,rgb(99, 128, 161),rgb(221, 235, 245));
+    background: linear-gradient(45deg,rgb(76, 118, 187),rgb(154, 183, 218));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -63,11 +91,15 @@
     transform: scale(1.1);
     font-weight: 600;
   }
-  h4{
+  h4 {
     font-size: 1.125rem;
-    color: #4a5568;
+    color: #6B7280;
     margin-bottom: 2rem;
     font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    position: relative;
+    
   }
   
   .buttons {
@@ -90,7 +122,7 @@
 }
   .container .login-btn {
     background: #f1f5f9;
-    color: #2a5e8f ;
+    color: #3b82f6 ;
     border: 2px solid rgb(192, 218, 243) ;
     transition: all 0.3s ease;
 }
