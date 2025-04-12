@@ -12,7 +12,7 @@
     align-items: center;
     min-height: 100vh;
     background: #ffffff;
-    /*background: linear-gradient(45deg,rgb(244, 246, 252) 40%,  #F8FAFC 60%);*/
+    background: linear-gradient(360deg,rgba(221, 227, 248, 0.72) 20%, #ffffff 50%, rgba(207, 218, 230, 0.45) 20%,  #ffffff 40% );
     overflow-x: hidden;
   }
 
@@ -51,8 +51,9 @@
   .book-header {
     max-width: 100%;
     height: auto;
+    margin-bottom: 1rem;
     border-radius: 0.5rem;
-    max-height: 400px; /* Adjust based on your image */
+    max-height: 300px; 
     object-fit: contain; /* Ensures image doesn’t stretch */
   }
 
@@ -61,7 +62,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem; /* Match original logo margin-bottom */
+    margin-bottom: 1.4rem; 
 }
   .logo {
     width: 3rem;
@@ -74,6 +75,7 @@
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .logo:hover{
@@ -95,7 +97,7 @@
   h4 {
     font-size: 1.125rem;
     color: #6B7280;
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
     font-weight: 400;
     font-style: italic;
     line-height: 1.6;
