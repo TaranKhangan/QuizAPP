@@ -145,7 +145,7 @@
     transition: all 0.3s ease;
 }
 /* Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 787px) {
    .navbar{
     justify-content: space-around;
    }
@@ -164,7 +164,7 @@
     }*/
 }
 
-@media (max-width:617px){
+@media (max-width:627px){
     
     .navbar {
         padding: 0.625rem 0.9375rem;

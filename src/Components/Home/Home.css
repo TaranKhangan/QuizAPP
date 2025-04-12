@@ -20,23 +20,24 @@
     text-align: center;
     padding: 3rem;
     border-radius: 1rem;
-    max-width: 90%;
-    margin: 1rem;
+    max-width: 1200px;/***/
+    margin: 1rem auto;
     animation: fadeIn 1.5s ease-in-out;
+    overflow-x: hidden;
   }
 
   .content-wrapper {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 4.5rem;
+    gap: 2.5rem;
   }
   
   .text-content {
     flex: 1;
     text-align: center;
     max-width: 40%;
-    margin-right: 4rem;
+    
   }
   
   .image-content {
@@ -44,7 +45,7 @@
     display: flex;
     justify-content: flex-end;
     max-width: 45%;
-    margin-left: 3rem;
+    
   }
   
   .book-header {
@@ -107,8 +108,8 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: nowrap;
-    overflow-x : auto;
-    white-space: nowrap;
+    overflow-x : hidden;
+    
     
   }
 
@@ -146,42 +147,6 @@
     transform: translateY(-0.125rem);
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
 }
-  /*
- button {
-    padding: 0.65rem 1.12rem !important;
-    border: 2px solid rgb(208, 214, 219) !important;
-    border-radius: 4rem !important;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .login-btn {
-    background: #f1f5f9 !important;
-    color: #2a5e8f !important;
-    border: 2px solidrgb(184, 199, 212) !important;
-
-  }
-  .login-btn:hover {
-    background: #2a5e8f !important; 
-    color: #ffffff !important;
-    transform: translateY(-0.125rem) !important;
-    box-shadow: 0 0.2rem 0.75rem rgba(0, 0, 0, 0.2) !important;
-    font-weight: 600 !important;
-  }
-  .signup-btn {
-    background:#2a5e8f !important;
-    color: white !important;
-    border: 2px solid rgb(210, 226, 241) !important;
-  }
-  .signup-btn:hover {
-    background:#4675a0 !important;
-    color: white !important;
-    transform: translateY(-0.125rem) !important;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2) !important;
-    font-weight: 600 !important;
-  }
-  */
   
 /* Fade-in animation */
 @keyframes fadeIn {
@@ -199,16 +164,31 @@
   @media (max-width: 768px) { 
     .container {
       padding: 1.5rem;
+      margin-top: 1.4rem;
     }
-  
+    .content-wrapper{
+      flex-direction: column-reverse;
+      gap: 1.5rem;
+    }
+    .text-content{
+      max-width: 100%;
+
+    }
+    .image-content{
+      max-width: 100%;
+      justify-content: center;
+    }
+    .book-header{
+      max-height: 300px;
+    }
     .logo {
-      width: 2.4rem;
-      height: 2.4rem;
-      font-size: 1.25rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      font-size: 1.2rem;
     }
   
     h1 {
-      font-size: 2rem;
+      font-size: 1.125rem;
     }
   
     h4 {
@@ -221,9 +201,9 @@
     }
   }
 
-  @media (max-width: 580px) {
+  @media (max-width: 600px) {
     .container{
-      padding: 2.5rem;
+      padding: 1.5rem;
     }
     
     .logo {
@@ -242,13 +222,12 @@
     }
   
     button {
-      padding: 0.5rem 1.25rem;
-      font-size: 0.75rem;
+      padding: 0.5rem 1.25rem !important;
+      font-size: 0.965rem !important;
       
     }
   
     .buttons {
-      
-      gap: 0.75rem;
+      gap: 0.75rem !important;
     }
   }
