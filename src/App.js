@@ -2,12 +2,14 @@
 import './App.css';
 import Home from './Components/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
+import Login from './Components/Sign-Log/Login';
 import React from 'react';
 const App =()=>{
   return(
     <div className='app-container'>
       <Home/>
       <Navbar/>
+      <Login/>
     </div>
   )
 }
