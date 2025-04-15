@@ -15,7 +15,7 @@ const Login = () => {
                 <div className="circle"></div>
                 <div className="circle"></div>
             </div>
-            <div className="container">
+            <div className="l-container">
                 <h2>Quiz Master Login</h2>
                 <form>
                     <div className="input-group">
@@ -45,7 +45,7 @@ const Login = () => {
                         />
                         <label htmlFor="show-password">Show Password</label>
                     </div>
-                    <button type="submit" className="login-btn">
+                    <button type="submit" className="l-login-btn">
                         Login to Quiz
                     </button>
                 </form>

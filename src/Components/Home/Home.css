@@ -169,7 +169,7 @@
       margin-top: 1.4rem;
     }
     .content-wrapper{
-      flex-direction: column-reverse;
+      flex-direction: column;
       gap: 1.5rem;
     }
     .text-content{

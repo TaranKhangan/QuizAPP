@@ -3,13 +3,26 @@ import './App.css';
 import Home from './Components/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/Sign-Log/Login';
-import React from 'react';
+
+import React, { useState } from 'react';
 const App =()=>{
+  const [currentPage,setCurrentPage] = useState('home');
+  const handleLoginClick = () => {
+    console.log('Login button clicked');
+    setCurrentPage('login');
+  };
+
   return(
     <div className='app-container'>
-      <Home/>
       <Navbar/>
-      <Login/>
+      {currentPage === 'home'? (
+        <Home onLoginClick= {handleLoginClick}/>
+      ) : (
+        <Login/>
+      )}
+      
+      
+      
     </div>
   )
 }

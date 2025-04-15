@@ -4,7 +4,7 @@ import BookHeader from '../../assets/Book-Header2.png';
 
 
 //https://grok.com/share/bGVnYWN5_c6fd31e8-8c40-4800-9028-eb1663de54da
-const Home = () => {
+const Home = ({onLoginClick}) => {
   const [showButtons, setShowButtons] = useState(window.innerWidth<=768);
  
   useEffect(()=>{
@@ -34,7 +34,7 @@ const Home = () => {
         <i>Be the Brain Behind the Change.</i></h4>
         {showButtons &&(
         <div className='buttons'>
-            <button className='login-btn'>Login</button>
+            <button className='login-btn'  onClick={onLoginClick}>Login</button>
             <button className='signup-btn'>Sign up</button>
         </div>
         )}
