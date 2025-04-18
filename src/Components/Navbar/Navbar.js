@@ -6,7 +6,7 @@ import refLogo from '../../assets/ref-Logo.jpeg';
 import toogle_Light from '../../assets/toogle_Light.png';
 */
 
-const Navbar = () => {
+const Navbar = ({onLoginClick}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -39,7 +39,7 @@ const Navbar = () => {
       </div>
       {/*Nav-Buttons*/ }
       <div className='nav-btns'> 
-        <button className='login-btn'>Login</button>
+        <button className='login-btn' onClick={onLoginClick}>Login</button>
         <button className='signup-btn'>Sign up</button>
       </div>
     

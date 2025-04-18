@@ -3,7 +3,7 @@ import './Home.css';
 import BookHeader from '../../assets/Book-Header2.png';
 
 
-//https://grok.com/share/bGVnYWN5_c6fd31e8-8c40-4800-9028-eb1663de54da
+
 const Home = ({onLoginClick}) => {
   const [showButtons, setShowButtons] = useState(window.innerWidth<=768);
  
