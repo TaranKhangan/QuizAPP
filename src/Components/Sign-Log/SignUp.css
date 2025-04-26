@@ -6,12 +6,11 @@
   }
   
   .signup-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 40px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
+    padding: 40px;
+    width: 400px;
     box-shadow: 0 8px 32px rgba(155, 162, 233, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
     animation: float 3s ease-in-out infinite;

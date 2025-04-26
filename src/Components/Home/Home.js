@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 
 
 const Home = ({onLoginClick}) => {
-  const [showButtons, setShowButtons] = useState(window.innerWidth<=768);
+  const [showButtons, setShowButtons] = useState(window.innerWidth<=789);
  
   useEffect(()=>{
     let mounted = true;
     const handleResize = () => {
       if(mounted){
-      setShowButtons(window.innerWidth<=768);
+      setShowButtons(window.innerWidth<=789);
     }
     };
     window.addEventListener('resize', handleResize);
@@ -40,6 +40,7 @@ const Home = ({onLoginClick}) => {
             <button className='signup-btn'>Sign up</button>
             <div className='dropdown-content'>
               <Link to='/teacher-signup'>Teacher</Link>
+              <Link to='/student-signup'>Student</Link>
             </div>
             </div>
         </div>
