@@ -1,23 +1,26 @@
-* {
+
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
+  
   .body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-}
-
+  }
+  
   .signup-container {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 40px;
-    width: 400px;
+    width: 800px;
+    max-width: 90%; 
     box-shadow: 0 8px 32px rgba(155, 162, 233, 0.37);
     margin-top: 40px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -43,12 +46,35 @@
     text-shadow: 0 0 10px rgba(0, 0, 255, 0.3);
   }
   
-  .form-group {
-    position: relative;
+  .form-section {
     margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    border-radius: 10px;
+    padding: 20px;
   }
   
-  .form-group input {
+  .form-section legend {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 10px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 20px;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .form-group input,
+  .form-group select{
     width: 100%;
     padding: 12px;
     background: rgba(255, 255, 255, 0.34);
@@ -59,13 +85,16 @@
     transition: all 0.3s ease;
   }
   
-  .form-group input:focus {
+  .form-group input:focus,
+   .form-group select:focus{
     outline: none;
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
   }
   
-  .form-group input::placeholder {
+
+  .form-group input::placeholder, 
+  .form-group select option[disabled][selected] {
     color: rgba(233, 229, 243, 0.9);
   }
   
@@ -82,7 +111,9 @@
   }
   
   .form-group input:focus + label,
-  .form-group input:not(:placeholder-shown) + label {
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group select:focus + label,
+  .form-group select:valid + label{
     top: -10px;
     font-size: 12px;
     color: rgb(132, 139, 241);
@@ -118,12 +149,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: 0.5s;
   }
   
@@ -151,6 +177,7 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
   }
+  
   .back-btn::before {
     content: '';
     position: absolute;
@@ -158,12 +185,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: 0.5s;
   }
   
@@ -172,61 +194,106 @@
   }
   
   /* Background Animation */
-.bg-animation {
-  position: absolute;
-  background: linear-gradient(35deg, rgb(171, 182, 245) 0%, #ffffff 100%, rgb(231, 219, 245) 0%);
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0, 123, 255, 0.2);
-  animation: move 25s infinite;
-}
-
-.circle:nth-child(1) {
-  width: 200px;
-  height: 200px;
-  top: 10%;
-  left: 20%;
-}
-
-.circle:nth-child(2) {
-  width: 150px;
-  height: 150px;
-  top: 60%;
+  .bg-animation {
+    position: fixed;
+    background: linear-gradient(35deg, rgb(171, 182, 245) 0%, #ffffff 100%, rgb(231, 219, 245) 0%);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.2);
+    animation: move 25s infinite;
+  }
+  
+  .circle:nth-child(1) {
+    width: 180px;
+    height: 180px;
+    top: 10%;
+    left: 20%;
+  }
+  
+  .circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation-duration: 20s;
+  }
+  
+  .circle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 30%;
+    animation-duration: 30s;
+  }
+  
+.circle:nth-child(4) {
+  width: 90px;
+  height: 90px;
+  top: 20%;
   right: 15%;
-  animation-duration: 20s;
+  animation-duration: 22s;
 }
 
-.circle:nth-child(3) {
+.circle:nth-child(5) {
   width: 100px;
   height: 100px;
-  bottom: 20%;
-  left: 30%;
-  animation-duration: 30s;
+  bottom: 10%;
+  left: 5%;
+  animation-duration: 28s;
 }
 
-@keyframes move {
-  0% {
+  @keyframes move {
+    0% {
       transform: translate(0, 0);
-  }
-  50% {
-      transform: translate(100px, 100px);
-  }
-  100% {
+    }
+    25%{
+      transform: translate(150px, 100px);
+    }
+    50% {
+      transform: translate(100px, 150px);
+    }
+    75%{
+      transform: translate(50px, 100px);
+    }
+    100% {
       transform: translate(0, 0);
+    }
   }
-}
-
+  
+  /* Responsive Design */
+  @media (max-width: 650px) {
+    .signup-container {
+      width: 400px;
+      padding: 20px;
+    }
+  
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  
+    .form-group {
+      min-width: 100%;
+    }
+  
+    .form-section {
+      padding: 15px;
+    }
+  }
   
   @media (max-width: 500px) {
     .signup-container {
-      width: 16rem;
+      width: 100%;
+      max-width: 20rem;
       padding: 1.25rem;
       border-radius: 0.93rem;
     }
@@ -240,7 +307,7 @@
       margin-bottom: 1.25rem;
     }
   
-    .form-group input {
+    .form-group input, .form-group select{
       font-size: 0.875rem;
       padding: 0.625rem;
     }
@@ -251,57 +318,79 @@
     }
   
     .form-group input:focus + label,
-    .form-group input:not(:placeholder-shown) + label {
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group select:focus + label,
+    .form-group select:valid + label{
       font-size: 0.625rem;
       top: -6px;
       padding: 0 3px;
     }
   
     .signup-btn {
-      font-size: 0.85rem;
-      padding: 0.625rem;
+      
+      font-size: 1rem;
+      padding: 0.75rem;
     }
   
     .back-btn {
-      font-size: 0.85rem;
-      padding: 0.625rem;
-      margin-top: 0.9375rem;
+      font-size: 1rem;
+      padding: 0.75rem;
+      margin-top: 1rem;
     }
   
     .circle:nth-child(1) {
-      width: 100px; 
-      height: 100px;
-      top: 5%;
-      left: 10%;
-  }
-
-  .circle:nth-child(2) {
-      width: 80px; 
+      width: 80px;
       height: 80px;
-      top: 50%;
-      right: 5%;
-  }
-
-  .circle:nth-child(3) {
+      top: 5%;
+      left: 5%;
+    }
+  
+    .circle:nth-child(2) {
       width: 60px;
       height: 60px;
+      top: 50%;
+      right: 5%;
+    }
+  
+    .circle:nth-child(3) {
+      width: 50px;
+      height: 50px;
       bottom: 10%;
       left: 15%;
+    }
+   
+  .circle:nth-child(4) {
+    width: 70px;
+    height: 70px;
+    top: 20%;
+    right: 10%;
   }
 
+  .circle:nth-child(5) {
+    width: 60px;
+    height: 60px;
+    bottom: 15%;
+    left: 10%;
+  }
 
-  @keyframes move {
+    @keyframes move {
       0% {
-          transform: translate(0, 0);
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(50px, 40px);
       }
       50% {
-          transform: translate(50px, 50px); 
+        transform: translate(40px, 50px);
+      }
+      75% {
+        transform: translate(20px, 30px);
       }
       100% {
-          transform: translate(0, 0);
+        transform: translate(0, 0);
       }
-  }
-
+    }
+  
     @keyframes float {
       0%, 100% {
         transform: translateY(0);
