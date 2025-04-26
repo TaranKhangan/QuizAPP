@@ -1,13 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 const StudentSignUp = ({ onHomeClick }) => {
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Student signing up');
   };
 
+  const handleBackClick = ()=>{
+    onHomeClick();
+    navigate('/');
+  }
+
   return (
+    <div className="body">
+    <div className="bg-animation">
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+    </div>
     <div className="signup-container">
       <h2>Student Sign Up</h2>
       <form onSubmit={handleSubmit}>
@@ -33,7 +46,8 @@ const StudentSignUp = ({ onHomeClick }) => {
         </div>
         <button type="submit" className="signup-btn">Sign Up</button>
       </form>
-      <button className="back-btn" onClick={onHomeClick}>Back to Home</button>
+      <button className="back-btn" onClick={handleBackClick}>Back to Home</button>
+    </div>
     </div>
   );
 };
