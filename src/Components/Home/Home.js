@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Home.css';
 import BookHeader from '../../assets/Book-Header2.png';
+import { Link } from 'react-router-dom';
 
 
 
@@ -35,7 +36,12 @@ const Home = ({onLoginClick}) => {
         {showButtons &&(
         <div className='buttons'>
             <button className='login-btn'  onClick={onLoginClick}>Login</button>
+            <div className='dropdown'>
             <button className='signup-btn'>Sign up</button>
+            <div className='dropdown-content'>
+              <Link to='/teacher-signup'>Teacher</Link>
+            </div>
+            </div>
         </div>
         )}
         </div>

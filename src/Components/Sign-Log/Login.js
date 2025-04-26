@@ -1,4 +1,6 @@
 
+
+
 import React, { useState } from 'react';
 import './Login.css';
 
@@ -75,7 +77,7 @@ const Login = () => {
                 <div className="circle"></div>
             </div>
             <div className="l-container">
-                <h2>{showForgotPassword ? 'Reset Password' : 'Quiz Master Login'}</h2>
+                <h2>{showForgotPassword ? 'Reset Password' : 'Quiz Login'}</h2>
                 {!showForgotPassword ? (
                     <form onSubmit={handleLoginSubmit}>
                         <div className="input-group">

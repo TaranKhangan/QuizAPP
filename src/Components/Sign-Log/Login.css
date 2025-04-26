@@ -1,9 +1,10 @@
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    
 }
 
 .body {
@@ -258,4 +259,116 @@ input:not(:placeholder-shown) + label {
     text-align: center;
     margin-top: 20px;
     text-shadow: 0 0 10px rgba(0, 0, 255, 0.3);
+}
+
+/* Responsiveness*/
+@media (max-width: 500px) {
+    .l-container {
+        width: 98%;
+        padding: 1.25rem;
+        border-radius: 0.93rem; 
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.25rem; 
+    }
+
+    .input-group {
+        margin-bottom: 1.25rem; 
+    }
+
+    input {
+        font-size: 0.875rem; 
+        padding: 0.625rem; 
+    }
+
+    label {
+        font-size: 0.875rem; 
+        left: 0.625rem; 
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+        font-size: 0.625rem;
+        top: -6px;
+        padding: 0 3px;
+    }
+
+    .options-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem; 
+        margin-bottom: 0.9rem; 
+    }
+
+    .checkbox-group {
+        margin-bottom: 0.9375rem; 
+    }
+
+    .checkbox-group input {
+        width: 0.875rem; 
+        height: 0.875rem;
+        margin-right: 6px;
+    }
+
+    .checkbox-group label {
+        font-size: 0.875rem; 
+    }
+
+    .l-login-btn {
+        font-size: 0.85rem; 
+        padding: 0.625rem; 
+    }
+
+    .forgot-password span,
+    .message {
+        font-size: 0.75rem;
+    }
+
+    .back-to-login {
+        margin-top: 0.9375rem; 
+    }
+
+    .circle:nth-child(1) {
+        width: 100px; 
+        height: 100px;
+        top: 5%;
+        left: 10%;
+    }
+
+    .circle:nth-child(2) {
+        width: 80px; 
+        height: 80px;
+        top: 50%;
+        right: 5%;
+    }
+
+    .circle:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        bottom: 10%;
+        left: 15%;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    @keyframes move {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(50px, 50px); 
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import './Navbar.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import refLogo from '../../assets/ref-Logo.jpeg';
 /*
 import toogle_Light from '../../assets/toogle_Light.png';
@@ -40,11 +41,16 @@ const Navbar = ({onLoginClick}) => {
       {/*Nav-Buttons*/ }
       <div className='nav-btns'> 
         <button className='login-btn' onClick={onLoginClick}>Login</button>
-        <button className='signup-btn'>Sign up</button>
+        <div className='dropdown'>
+        <button className='signup-btn' >Sign up</button>
+        <div className='dropdown-content'>
+          <Link to='/teacher-signup'>Teacher</Link>
+          <Link to='/student-signup'>Student</Link>
       </div>
-    
+    </div>
+    </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar
