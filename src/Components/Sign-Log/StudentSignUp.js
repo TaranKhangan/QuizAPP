@@ -132,7 +132,7 @@ const StudentSignUp = ({ onHomeClick }) => {
             <div className="form-row">
               <div className="form-group">
                 <input type="text" id="grade" required placeholder=" " />
-                <label htmlFor="grade">Grade</label>
+                <label htmlFor="grade">Grade/Year</label>
               </div>
               <div className="form-group">
                 <select id="areaOfInterest" name="areaOfInterest" required>
@@ -151,7 +151,7 @@ const StudentSignUp = ({ onHomeClick }) => {
             </div>
           </fieldset>
 
-          <button type="submit" className="signup-btn">Sign Up</button>
+          <button type="submit" className="Signup-btn">Sign Up</button>
         </form>
         <button className="back-btn" onClick={handleBackClick}>Back to Home</button>
       </div>

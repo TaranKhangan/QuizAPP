@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Navbar.css */
@@ -200,17 +201,7 @@
       }
    .nav-btns{
     display: none;
-   }/*
-    .nav-btns {
-        display: none;
-       flex-direction: column;
-        gap: 10px;
-        width: 100%;*/
-
-   /* .login-btn, .signup-btn {
-        width: 100%;
-        padding: 10px;
-    }*/
+   }
 }
 
 @media (max-width:627px){

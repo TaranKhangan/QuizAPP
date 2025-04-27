@@ -104,7 +104,7 @@ const TeacherSignUp = ({ onHomeClick }) => {
             </div>
           </fieldset>
 
-          <button type="submit" className="signup-btn">Sign Up</button>
+          <button type="submit" className="Signup-btn">Sign Up</button>
         </form>
         <button className="back-btn" onClick={handleBackClick}>Back to Home</button>
       </div>

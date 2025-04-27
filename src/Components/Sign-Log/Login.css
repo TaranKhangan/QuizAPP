@@ -22,7 +22,7 @@
     padding: 40px;
     width: 400px;
     box-shadow: 0 8px 32px rgba(155, 162, 233, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.62);
     animation: float 3s ease-in-out infinite;
 }
 
@@ -52,10 +52,10 @@ h2 {
 input {
     width: 100%;
     padding: 12px;
-    background: rgba(255, 255, 255, 0.34);
+    background: rgba(255, 255, 255, 0.43);
     border: none;
     border-radius: 10px;
-    color:rgb(113, 116, 121);
+    color:rgb(86, 103, 129);
     font-size: 16px;
     transition: all 0.3s ease;
 }
@@ -67,7 +67,7 @@ input:focus {
 }
 
 input::placeholder {
-    color: rgba(233, 229, 243, 0.9);
+    color: rgba(143, 118, 206, 0.9);
 }
 
 label {
