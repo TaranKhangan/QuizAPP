@@ -8,9 +8,6 @@ import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/Sign-Log/Login';
 import TeacherSignUp from './Components/Sign-Log/TeacherSignUp';
 import StudentSignUp from './Components/Sign-Log/StudentSignUp';
-import About from './Components/Navbar/About';
-import Services from './Components/Navbar/Services';
-import ContactUs from './Components/Navbar/ContactUs';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -33,9 +30,6 @@ const App = () => {
             path="/"
             element={showLogin ? <Login /> : <Home onLoginClick={handleLoginClick} />}
           />
-          <Route path='/about' element={<About/>}/>
-          <Route path='/services' element={<Services/>}/>
-          <Route path='/contact' element={<ContactUs/>}/>
           <Route
             path="/teacher-signup"
             element={<TeacherSignUp onHomeClick={handleHomeClick} />}
