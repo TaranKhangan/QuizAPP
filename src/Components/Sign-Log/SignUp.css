@@ -96,7 +96,7 @@
 
 .form-group select {
   scrollbar-width: thin;
-  scrollbar-color: rgb(213, 164, 245) transparent;
+  scrollbar-color: rgb(167, 173, 247) transparent;
 }
 
 .form-group select::-webkit-scrollbar {
@@ -109,7 +109,7 @@
 }
 
 .form-group select::-webkit-scrollbar-thumb {
-  background: rgb(213, 164, 245);
+  background: rgba(169, 164, 245, 0.68);
   border-radius: 10px;
 }
 
@@ -190,6 +190,7 @@
   left: 100%;
 }
 
+
 .back-btn {
   width: 100%;
   padding: 12px;
@@ -225,6 +226,36 @@
 .back-btn:hover::before {
   left: 100%;
 }
+
+/* Success Notification */
+.success-message {
+  position: fixed;
+  width: 300px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, rgba(188, 203, 218, 0.49), rgb(236, 243, 239), rgba(166, 208, 238, 0.78));
+  color:rgb(51, 91, 107);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(46, 83, 92, 0.4);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.success-message.show {
+  opacity: 1;
+  transform:  translateX(-50%) translateY(0);
+}
+
+
 
 /* Background Animation */
 .bg-animation {
@@ -321,6 +352,14 @@
   .form-section {
     padding: 15px;
   }
+  
+
+  .success-message {
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    padding: 8px 15px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -370,6 +409,12 @@
     padding: 0.75rem;
     margin-top: 1rem;
   }
+  
+  .success-message {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+
 
   .circle:nth-child(1) {
     width: 80px;
