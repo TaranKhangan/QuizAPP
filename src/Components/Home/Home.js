@@ -213,8 +213,8 @@ const Footer = () => (
   <footer role="contentinfo">
     <div className="container">
       <p>
-        © 2025 HumanityEd NGO | Advancing Education and Science for All |{' '}
-        <a href="mailto:contact@humanityed.org">contact@humanityed.org</a>
+        © 2025 SAHASH NGO | Advancing Education and Science for All |{' '}
+        <a href="mailto:info@sahashindia.org">info@sahashindia.org</a>
       </p>
     </div>
   </footer>
