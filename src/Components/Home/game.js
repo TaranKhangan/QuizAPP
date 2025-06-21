@@ -1,3 +1,126 @@
+/*
+const GameSection = () => {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+
+    if (!canvas || !container) {
+      console.error('Canvas or container not found');
+      return () => {};
+    }
+
+    const resizeCanvas = () => {
+      const aspectRatio = 16 / 9;
+      const maxWidth = container.clientWidth - 16;
+      let width = maxWidth;
+      let height = width / aspectRatio;
+      const minHeight = 200;
+      if (height < minHeight) {
+        height = minHeight;
+        width = height * aspectRatio;
+      }
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const handleFullscreenChange = () => {
+      try {
+        const fullscreenBtn = document.getElementById('btn-fullscreen');
+        const exitBtn = document.getElementById('btn-exit');
+        const pauseFullscreenBtn = document.getElementById('btn-pause-fullscreen');
+        const resumeFullscreenBtn = document.getElementById('btn-resume-fullscreen');
+
+        if (document.fullscreenElement) {
+          if (fullscreenBtn) fullscreenBtn.textContent = 'Exit Fullscreen';
+          if (exitBtn) exitBtn.classList.remove('hidden');
+          if (pauseFullscreenBtn) pauseFullscreenBtn.classList.remove('hidden');
+          if (resumeFullscreenBtn) resumeFullscreenBtn.classList.add('hidden');
+        } else {
+          if (fullscreenBtn) fullscreenBtn.textContent = 'Fullscreen';
+          if (exitBtn) exitBtn.classList.add('hidden');
+          if (pauseFullscreenBtn) pauseFullscreenBtn.classList.add('hidden');
+          if (resumeFullscreenBtn) resumeFullscreenBtn.classList.add('hidden');
+        }
+        resizeCanvas();
+      } catch (err) {
+        console.error('handleFullscreenChange error:', err);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    const cleanupGame = startGame(canvas, null);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      cleanupGame();
+      resetGame();
+    };
+  }, []);
+
+  return (
+    <section id="game-section" aria-label="Interactive Game Section">
+      <div className="container">
+        <h2>Play Our Interactive Science Game</h2>
+        <div id="game-section-wrapper">
+          <div id="game-header" role="region" aria-live="polite">
+            <div>
+              Score: <span id="score">0</span>
+            </div>
+            <div>
+              Level: <span id="level">1</span>
+            </div>
+            <div>
+              Lives: <span id="lives">3</span>
+            </div>
+            <div>
+              Timer: <span id="timer">60</span>s
+            </div>
+          </div>
+          <div id="game-main">
+            <div id="game-sidebar">
+              <section>
+                <h3>Power-ups</h3>
+                <div id="powerups" role="list"></div>
+              </section>
+              <section>
+                <h3>Achievements</h3>
+                <div id="achievements" role="list"></div>
+              </section>
+            </div>
+            <div id="game-canvas-container" ref={containerRef}>
+              <canvas ref={canvasRef} id="game-canvas"></canvas>
+              <div id="particle-container"></div>
+              <div id="fullscreen-controls" className="hidden">
+                <button id="btn-pause-fullscreen" className="game-btn">Pause</button>
+                <button id="btn-resume-fullscreen" className="game-btn hidden">Resume</button>
+                <button id="btn-exit" className="exit-btn hidden">Exit</button>
+              </div>
+            </div>
+          </div>
+          <div id="game-bottom-controls">
+            <button id="btn-pause" className="game-btn">Pause</button>
+            <button id="btn-resume" className="game-btn hidden">Resume</button>
+            <button id="btn-fullscreen" className="game-btn">Fullscreen</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+*/
+
+
+
 let animationFrameId = null;
 
 export const startGame = (canvas, onGameStateChange) => {
