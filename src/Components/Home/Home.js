@@ -127,7 +127,7 @@ import React, { useState } from 'react';
 
 const Hero = () => (
   <section id="home" className="hero" aria-label="Hero Section">
-    <h1>Empower Minds | Inspire Humanity | Explore Science</h1>
+    <h1>Online Test Platform provided by Sahash</h1>
     <p>Join our journey to educate, quiz your knowledge, and embrace humanity through science and learning.</p>
     <button
       className="btn-primary"
@@ -147,9 +147,9 @@ const Education = () => (
           src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b4733c0e-e546-4e27-a76c-c26ca524ce13.png"
           alt="Educational books and globe icon"
         />
-        <h3>Inclusive Learning</h3>
+        <h3> Industrial Training</h3>
         <p>Providing accessible education for all ages, with a focus on science, technology, and social skills.</p>
-          <a href="https://sahashindia.org" className="learn-more" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.techfeedosolutions.com/" className="learn-more" target="_blank" rel="noopener noreferrer">
             Learn More
           </a>
       </article>
@@ -298,12 +298,101 @@ const HumanityScience = () => (
   </section>
 );
 
+
+const AboutUs = () => (
+  <section id="aboutUs" aria-labelledby="aboutUs-heading">
+    <div className="container">
+      <h2 id="aboutUs-heading">About Us</h2>
+      <div className="content-block">
+        <h3>Our Vision</h3>
+        <p>Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.  </p>
+        <a href="https://www.sahashindia.org/visionmission.html" className="learn-more" target="_blank" rel="noopener noreferrer">
+          Learn More
+        </a>
+      </div>
+      <div className="content-block">
+        <h3>Our Mission</h3>
+        <p>Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.  </p>
+        <a href="https://www.sahashindia.org/visionmission.html" className="learn-more" target="_blank" rel="noopener noreferrer">
+          Learn More
+        </a>
+      </div>
+      <div className="content-block">
+        <h3>Our Values</h3>
+        <p>
+        Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.  
+        </p>
+        <a href="https://www.sahashindia.org/visionmission.html" className="learn-more" target="_blank" rel="noopener noreferrer">
+          Learn More
+        </a>
+      </div>
+      
+    </div>
+  </section>
+);
+
+const FeedbackForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Feedback submitted:', { name, email, message });
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
+
+  return (
+    <section id="feedback" aria-labelledby="feedback-heading" className="feedback-section">
+      <div className="container">
+        <h2 id="feedback-heading">Share Your Feedback</h2>
+        <div className="feedback-form-container">
+          <div className="feedback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              aria-label="Name"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-label="Email"
+              required
+            />
+            <textarea
+              placeholder="Your Feedback"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              aria-label="Feedback message"
+              rows="5"
+              required
+            ></textarea>
+            <button className="btn-primary" onClick={handleSubmit}>
+              Submit Feedback
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Footer = () => (
   <footer role="contentinfo">
     <div className="container">
       <p>
-        © 2025 SAHASH NGO | Advancing Education and Science for All |{' '}
-        <a href="mailto:info@sahashindia.org" rel="noopener">info@sahashindia.org</a>
+        © SAHASH 2025| Privacy Policy |{''} 
+         Refund/Cancellation Policy |{' '}
+        +91 9473795690  |{' '}
+        <a href="mailto:info@sahashindia.org"  rel="noopener">info@sahashindia.org</a>
+        
       </p>
     </div>
   </footer>
@@ -318,6 +407,8 @@ const Home = ({ onLoginClick }) => {
       <Education />
       <Quiz />
       <HumanityScience />
+       <AboutUs />
+      <FeedbackForm />
       <Footer />
      
     </main>

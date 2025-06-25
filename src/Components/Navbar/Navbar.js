@@ -196,7 +196,17 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
                 Humanity & Science
               </a>
             </li>
-         
+            <li>
+              <a href="#aboutUs" onClick={() => handleScroll('aboutUs')}>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#FeebackForm" onClick={() => handleScroll('feedback')}>
+                Feedback Form
+              </a>
+            </li>
+          
           </ul>
         </div>
         <div className="nav-btns desktop-nav-btns">
