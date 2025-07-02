@@ -36,7 +36,7 @@
 }
 
 .signup-container h2 {
-  color: #ffffff;
+  color: #306994;
   text-align: center;
   margin-bottom: 30px;
   font-size: 28px;
@@ -260,7 +260,7 @@
 /* Background Animation */
 .bg-animation {
   position: fixed;
-  background: linear-gradient(35deg, rgb(171, 182, 245) 0%, #ffffff 100%, rgb(231, 219, 245) 0%);
+  background: linear-gradient(35deg, rgb(171, 182, 245) 0%, #ffffff 100%, rgb(195, 221, 243) 0%);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -272,7 +272,7 @@
 .circle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(0, 123, 255, 0.2);
+  background: rgba(0, 123, 255, 0.36);
   animation: move 25s infinite;
 }
 

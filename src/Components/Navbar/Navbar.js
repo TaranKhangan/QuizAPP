@@ -203,7 +203,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
             </li>
             <li>
               <a href="#FeebackForm" onClick={() => handleScroll('feedback')}>
-                Feedback Form
+                Feedback 
               </a>
             </li>
           
