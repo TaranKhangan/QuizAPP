@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
@@ -8,7 +9,7 @@ const StudentSignUp = ({ onHomeClick }) => {
   const [formData, setFormData] = useState({
     fullname: '',
     fathername: '',
-    gender:'',
+    gender: '',
     customGender: '',
     areasOfInterest: [],
     email: '',
@@ -28,21 +29,20 @@ const StudentSignUp = ({ onHomeClick }) => {
     password: '',
     confirmPassword: ''
   });
-  
+
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showInterestsDropdown, setShowInterestsDropdown] = useState(false);
-  const [interestFilter, setInterestFilter] = useState('');
+  const [isInterestsOpen, setIsInterestsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handleSubmit called'); 
+    console.log('handleSubmit called');
     console.log('Student signing up', {
       fullname: formData.fullname,
       fathername: formData.fathername,
       gender: formData.gender === 'Others' ? formData.customGender : formData.gender,
       areasOfInterest: formData.areasOfInterest,
       email: formData.email,
-      password: formData.password,
       phoneNumber: formData.phoneNumber,
       pincode: formData.pincode,
       city: formData.city,
@@ -82,19 +82,29 @@ const StudentSignUp = ({ onHomeClick }) => {
       password: '',
       confirmPassword: ''
     });
-    setInterestFilter('');
+    setIsInterestsOpen(false);
   };
 
   useEffect(() => {
     if (showSuccess) {
-      console.log('Success message should be visible'); // Debug log
+      console.log('Success message should be visible');
       const timer = setTimeout(() => {
-        console.log('Hiding success message'); // Debug log
+        console.log('Hiding success message');
         setShowSuccess(false);
       }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsInterestsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleBackClick = () => {
     onHomeClick();
@@ -106,13 +116,13 @@ const StudentSignUp = ({ onHomeClick }) => {
     setFormData((prev) => {
       const newFormData = { ...prev, [id]: value };
 
-      // Reset dependent fields when a parent field changes
       if (id === 'institutionType') {
         newFormData.institutionState = '';
         newFormData.institutionDistrict = '';
         newFormData.institutionCity = '';
         newFormData.selectedInstitution = '';
         newFormData.customCoachingName = '';
+        newFormData.grade = '';
       } else if (id === 'institutionState') {
         newFormData.institutionDistrict = '';
         newFormData.institutionCity = '';
@@ -131,14 +141,14 @@ const StudentSignUp = ({ onHomeClick }) => {
     });
   };
 
-  
-  const handleInterestToggle = (interest) => {
+  const handleInterestChange = (interest) => {
     setFormData((prev) => {
-      const areasOfInterest = prev.areasOfInterest.includes(interest)
-        ? prev.areasOfInterest.filter((item) => item !== interest)
+      const newInterests = prev.areasOfInterest.includes(interest)
+        ? prev.areasOfInterest.filter((i) => i !== interest)
         : [...prev.areasOfInterest, interest];
-      return { ...prev, areasOfInterest };
+      return { ...prev, areasOfInterest: newInterests };
     });
+    setIsInterestsOpen(false); // Hide dropdown after selection
   };
 
   const states = [
@@ -188,12 +198,23 @@ const StudentSignUp = ({ onHomeClick }) => {
     'Guru Nanak Dev Engineering College'
   ];
 
-  
   const interests = [
     'Mathematics', 'Science', 'Physics', 'Chemistry', 'Biology',
     'Computer Science / Coding', 'English Literature', 'Social Studies / History',
     'Economics', 'Geography', 'Robotics / AI', 'Environmental Awareness',
     'Space / Astronomy', 'Arts'
+  ];
+
+  const schoolGrades = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'
+  ];
+
+  const collegeUniversityCourses = [
+    'BA', 'MA', 'BSc', 'MSc', 'BCom', 'MCom', 'BCA', 'MCA', 'BTech', 'MTech', 'BBA', 'MBA', 'Polytechnic'
+  ];
+
+  const coachingExams = [
+    'JEE', 'NEET', 'SSC', 'UPSC', 'Railway'
   ];
 
   const getInstitutions = () => {
@@ -211,9 +232,33 @@ const StudentSignUp = ({ onHomeClick }) => {
     }
   };
 
-  const filteredInterests = interests.filter((interest) =>
-    interest.toLowerCase().includes(interestFilter.toLowerCase())
-  );
+  const getGradeOptions = () => {
+    switch (formData.institutionType) {
+      case 'School':
+        return schoolGrades;
+      case 'College':
+      case 'University':
+        return collegeUniversityCourses;
+      case 'Coaching Center':
+        return coachingExams;
+      default:
+        return [];
+    }
+  };
+
+  const getGradeLabel = () => {
+    switch (formData.institutionType) {
+      case 'School':
+        return 'Grade';
+      case 'College':
+      case 'University':
+        return 'Course';
+      case 'Coaching Center':
+        return 'Exam';
+      default:
+        return 'Qualification';
+    }
+  };
 
   return (
     <div className="body">
@@ -246,7 +291,7 @@ const StudentSignUp = ({ onHomeClick }) => {
                 <label htmlFor="fullname">Full Name</label>
               </div>
               <div className="form-group">
-                 <input
+                <input
                   type="text"
                   id="fathername"
                   required
@@ -256,10 +301,10 @@ const StudentSignUp = ({ onHomeClick }) => {
                 />
                 <label htmlFor="fathername">Father's Name</label>
               </div>
-              </div>
+            </div>
             <div className="form-row">
               <div className="form-group">
-                 <select
+                <select
                   id="gender"
                   required
                   value={formData.gender}
@@ -272,7 +317,7 @@ const StudentSignUp = ({ onHomeClick }) => {
                 </select>
                 <label htmlFor="gender">Gender</label>
               </div>
-               {formData.gender === 'Others' && (
+              {formData.gender === 'Others' && (
                 <div className="form-group">
                   <input
                     type="text"
@@ -283,28 +328,34 @@ const StudentSignUp = ({ onHomeClick }) => {
                     onChange={handleInputChange}
                   />
                   <label htmlFor="customGender">Specify Gender</label>
-                  </div>
+                </div>
               )}
             </div>
             
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="areasOfInterest"
-                  required
-                  value={formData.areasOfInterest}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {interests.map((interest) => (
-                    <option key={interest} value={interest}>
-                      {interest}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="areasOfInterest">Area of Interest</label>
-              </div>
-            </div>
+           <div className="form-row ">
+      <div className="form-group ">
+        <select
+          id="areasOfInterest"
+          name="areasOfInterest"
+          value={selectedInterest}
+          onChange={handleInterestChange}>
+          <option value="" disabled hidden>
+            Select Area of Interest
+          </option>
+          {interests.map((interest) => (
+            <option key={interest} value={interest}>
+              {interest}
+            </option>
+          ))}
+        </select>
+        <label
+          htmlFor="areasOfInterest">
+          Areas of Interest
+        </label>
+      </div>
+    </div>
+      
+
           </fieldset>
 
           {/* Contact Details Section */}
@@ -322,7 +373,7 @@ const StudentSignUp = ({ onHomeClick }) => {
                 />
                 <label htmlFor="email">Email</label>
               </div>
-              </div>
+            </div>
             <div className="form-row">
               <div className="form-group">
                 <input
@@ -411,7 +462,6 @@ const StudentSignUp = ({ onHomeClick }) => {
                 <select
                   id="institutionType"
                   name="institutionType"
-                  
                   value={formData.institutionType}
                   onChange={handleInputChange}
                 >
@@ -445,7 +495,6 @@ const StudentSignUp = ({ onHomeClick }) => {
                 <select
                   id="institutionDistrict"
                   name="institutionDistrict"
-                  
                   value={formData.institutionDistrict}
                   onChange={handleInputChange}
                   disabled={!formData.institutionState}
@@ -461,7 +510,6 @@ const StudentSignUp = ({ onHomeClick }) => {
                 <select
                   id="institutionCity"
                   name="institutionCity"
-                  
                   value={formData.institutionCity}
                   onChange={handleInputChange}
                   disabled={!formData.institutionDistrict}
@@ -480,7 +528,6 @@ const StudentSignUp = ({ onHomeClick }) => {
                   <input
                     type="text"
                     id="customCoachingName"
-                    
                     placeholder=" "
                     value={formData.customCoachingName}
                     onChange={handleInputChange}
@@ -515,29 +562,20 @@ const StudentSignUp = ({ onHomeClick }) => {
                   required
                   value={formData.grade}
                   onChange={handleInputChange}
+                  disabled={!formData.institutionType}
                 >
                   <option value="" disabled selected hidden></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="Undergraduate">Undergraduate</option>
-                  <option value="Graduate">Graduate</option>
-                  <option value="Postgraduate">Postgraduate</option>
+                  {getGradeOptions().map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
-                <label htmlFor="grade">Qualification</label>
+                <label htmlFor="grade">{getGradeLabel()}</label>
               </div>
-              
             </div>
           </fieldset>
+
           {/* Account Details Section */}
           <fieldset className="form-section">
             <legend>Account Details</legend>
@@ -554,44 +592,38 @@ const StudentSignUp = ({ onHomeClick }) => {
                 <label htmlFor="username">Username</label>
               </div>
             </div>
-              <div className="form-row">
-              
-               <div className="form-group">
-                 <input
+            <div className="form-row">
+              <div className="form-group">
+                <input
                   type="password"
                   id="password"
                   required
                   placeholder=" "
                   value={formData.password}
                   onChange={handleInputChange}
-                 />
-                 <label htmlFor="password">Password</label>
-                </div>
-              
-                <div className="form-group">
-                  <input
+                />
+                <label htmlFor="password">Password</label>
+              </div>
+              <div className="form-group">
+                <input
                   type="password"
                   id="confirmPassword"
                   required
                   placeholder=" "
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  />
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                </div>
+                />
+                <label htmlFor="confirmPassword">Confirm Password</label>
+              </div>
             </div>
-            
           </fieldset>
 
-
-          
-        </form>
-         {/* Buttons */}
+          {/* Buttons */}
           <div className="button-container">
-            <button type="submit" className="signup-btn">Sign Up</button>
+            <button type="submit" className="Signup-btn">Sign Up</button>
             <button type="button" className="back-btn" onClick={handleBackClick}>Back to Home</button>
           </div>
-        
+        </form>
       </div>
     </div>
   );
