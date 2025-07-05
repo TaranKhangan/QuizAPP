@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
@@ -31,8 +31,7 @@ const StudentSignUp = ({ onHomeClick }) => {
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
-  const [isInterestsOpen, setIsInterestsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +81,7 @@ const StudentSignUp = ({ onHomeClick }) => {
       password: '',
       confirmPassword: ''
     });
-    setIsInterestsOpen(false);
+   
   };
 
   useEffect(() => {
@@ -97,14 +96,8 @@ const StudentSignUp = ({ onHomeClick }) => {
   }, [showSuccess]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsInterestsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  console.log("areasOfInterest:", formData.areasOfInterest);
+}, [formData.areasOfInterest]);
 
   const handleBackClick = () => {
     onHomeClick();
@@ -141,7 +134,7 @@ const StudentSignUp = ({ onHomeClick }) => {
     });
   };
 
-  const handleInterestChange = (interest) => {
+  /*const handleInterestChange = (interest) => {
     setFormData((prev) => {
       const newInterests = prev.areasOfInterest.includes(interest)
         ? prev.areasOfInterest.filter((i) => i !== interest)
@@ -149,7 +142,7 @@ const StudentSignUp = ({ onHomeClick }) => {
       return { ...prev, areasOfInterest: newInterests };
     });
     setIsInterestsOpen(false); // Hide dropdown after selection
-  };
+  };*/
 
   const states = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
@@ -331,14 +324,12 @@ const StudentSignUp = ({ onHomeClick }) => {
                 </div>
               )}
             </div>
-            
+           {/*
            <div className="form-row ">
       <div className="form-group ">
         <select
           id="areasOfInterest"
-          name="areasOfInterest"
-          value={selectedInterest}
-          onChange={handleInterestChange}>
+          name="areasOfInterest" > 
           <option value="" disabled hidden>
             Select Area of Interest
           </option>
@@ -354,8 +345,28 @@ const StudentSignUp = ({ onHomeClick }) => {
         </label>
       </div>
     </div>
-      
+      */}
+    
+         <div className="form-row">
 
+  <div className="form-group">
+    <select
+      id="areasOfInterest"
+      name="areasOfInterest" required 
+      value={formData.areasOfInterest}
+      onChange={handleInputChange}
+     
+    >
+       <option value="" disabled selected hidden></option>
+      {interests.map((interest) => (
+        <option key={interest} value={interest}>
+          {interest}
+        </option>
+      ))}
+    </select>
+    <label htmlFor="areasOfInterest">Areas of Interest</label>
+  </div>
+</div>
           </fieldset>
 
           {/* Contact Details Section */}
