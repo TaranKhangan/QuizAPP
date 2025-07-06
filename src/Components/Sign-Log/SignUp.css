@@ -1,8 +1,11 @@
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Poppins', Roboto, sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 .body {
@@ -19,20 +22,11 @@
   border-radius: 20px;
   padding: 40px;
   width: 800px;
-  max-width: 90%;
+  max-width: 95%;
   box-shadow: 0 8px 32px rgba(155, 162, 233, 0.37);
-  margin-top: 40px;
+  margin: 40px auto;
   border: 1px solid rgba(255, 255, 255, 0.18);
   animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .signup-container h2 {
@@ -49,7 +43,8 @@
   margin-bottom: 30px;
   border: 2px solid rgba(249, 248, 252, 0.92);
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
+  position: relative;
 }
 
 .form-section legend {
@@ -63,6 +58,7 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+ 
 }
 
 .form-group {
@@ -78,8 +74,8 @@
   padding: 12px;
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.9));
   border: none;
-  border-radius: 10px;
-  color: rgb(41, 59, 87);
+  border-radius: 30px;
+  color:  rgb(41, 59, 87);;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -118,19 +114,72 @@
   border-radius: 10px;
 }
 
-.form-group label {
+
+.form-group input[type="radio"] {
+  width: auto ;
+  margin-right: 15px;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.form-group.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100px;
+}
+
+.form-group.radio-group .radio-label {
+  color: rgb(41, 59, 87);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-group.radio-group .radio-options {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  
+  padding: 10px 0;
+  width: 100%;
+}
+
+.form-group.radio-group .radio-options label {
+  display: flex;
+  align-items: center;
+  gap:10px;
+  color: rgb(41, 59, 87);
+  font-size:1rem;
+  padding: 5px 0;
+  width: 100%;
+  line-height: 1.5;
+  cursor: pointer;
+}
+/*:not(.radio-label):not(.radio-options label)
+
+.form-group label:not(.radio-label) {
+  color: rgba(86, 59, 241, 0.52);
+  font-size: 14px;
+  font-weight: 500;
+}*/
+
+
+.form-group label:not(.radio-label):not(.radio-options label) {
   position: absolute;
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(86, 59, 241, 0.52);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   pointer-events: none;
   transition: all 0.3s ease;
 }
 
-.form-group input:focus + label,
+
+form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label,
 .form-group select:focus + label,
 .form-group select:valid + label, 
@@ -172,6 +221,17 @@
   box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
 }
 
+
+.Signup-btn:disabled {
+  background: linear-gradient(45deg, rgba(67, 148, 235, 0.5), rgba(129, 121, 248, 0.5));
+  cursor: not-allowed;
+}
+
+.Signup-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
 .Signup-btn::before {
   content: '';
   position: absolute;
@@ -182,8 +242,12 @@
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: 0.5s;
 }
-
 .Signup-btn:hover::before {
+  left: 100%;
+}
+
+
+.Signup-btn:hover::before:not(:disabled) {
   left: 100%;
 }
 
@@ -224,7 +288,6 @@
   left: 100%;
 }
 
-/* Success Notification */
 .success-message {
   position: fixed;
   width: 300px;
@@ -252,7 +315,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Background Animation */
 .bg-animation {
   position: fixed;
   background: linear-gradient(35deg, rgb(171, 182, 245) 0%, #ffffff 100%, rgb(195, 221, 243) 0%);
@@ -271,88 +333,50 @@
   animation: move 25s infinite;
 }
 
-.circle:nth-child(1) {
-  width: 180px;
-  height: 180px;
-  top: 10%;
-  left: 20%;
-}
-
-.circle:nth-child(2) {
-  width: 150px;
-  height: 150px;
-  top: 60%;
-  right: 15%;
-  animation-duration: 20s;
-}
-
-.circle:nth-child(3) {
-  width: 100px;
-  height: 100px;
-  bottom: 20%;
-  left: 30%;
-  animation-duration: 30s;
-}
-
-.circle:nth-child(4) {
-  width: 90px;
-  height: 90px;
-  top: 20%;
-  right: 15%;
-  animation-duration: 22s;
-}
-
-.circle:nth-child(5) {
-  width: 100px;
-  height: 100px;
-  bottom: 10%;
-  left: 5%;
-  animation-duration: 28s;
-}
+.circle:nth-child(1) { width: 180px; height: 180px; top: 10%; left: 20%; }
+.circle:nth-child(2) { width: 150px; height: 150px; top: 60%; right: 15%; animation-duration: 20s; }
+.circle:nth-child(3) { width: 100px; height: 100px; bottom: 20%; left: 30%; animation-duration: 30s; }
+.circle:nth-child(4) { width: 90px; height: 90px; top: 20%; right: 15%; animation-duration: 22s; }
+.circle:nth-child(5) { width: 100px; height: 100px; bottom: 10%; left: 5%; animation-duration: 28s; }
 
 @keyframes move {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(150px, 100px);
-  }
-  50% {
-    transform: translate(100px, 150px);
-  }
-  75% {
-    transform: translate(50px, 100px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(150px, 100px); }
+  50% { transform: translate(100px, 150px); }
+  75% { transform: translate(50px, 100px); }
+  100% { transform: translate(0, 0); }
 }
 
-/* Responsive Design */
-@media (max-width: 650px) {
+@media (max-width: 800px) {
   .signup-container {
-    width: 400px;
+    width: 450px;
+    padding: 25px;
+  }
+  .form-section {
     padding: 20px;
   }
-
-  .form-row {
-    flex-direction: column;
-    gap: 0;
+  .form-group.radio-group {
+    padding: 25px;
+    min-height: 140px;
   }
-
-  .form-group {
-    min-width: 100%;
+  .form-group.radio-group .radio-options {
+    gap: 25px;
+    padding: 15px 0;
   }
-
-  .form-section {
-    padding: 15px;
-  }
-
-  .success-message {
-    top: 5px;
-    right: 5px;
+  .form-group.radio-group .radio-options label {
     font-size: 12px;
-    padding: 8px 15px;
+    padding: 15px 0;
+  }
+  .Signup-btn{
+    width:30%;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .back-btn{
+    width: 30%;
+    padding: 10px;
+    font-size: 14px;
+
   }
 }
 
@@ -360,118 +384,118 @@
   .signup-container {
     width: 100%;
     max-width: 20rem;
+    min-width: 18rem;
     padding: 1.25rem;
     border-radius: 0.93rem;
   }
-
   .signup-container h2 {
     font-size: 1.25rem;
     margin-bottom: 1.25rem;
   }
-
   .form-group {
     margin-bottom: 1.25rem;
   }
-
   .form-group input,
   .form-group select {
     font-size: 0.875rem;
     padding: 0.625rem;
   }
-
-  .form-group label {
+  .form-group select.multi-select {
+    height: auto;
+    min-height: 40px;
+    padding: 8px;
+  }
+  .form-group select option {
+    padding: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 3px 0;
+  }
+  .form-group label:not(.radio-label) {
     font-size: 0.875rem;
     left: 0.625rem;
   }
-
   .form-group input:focus + label,
   .form-group input:not(:placeholder-shown) + label,
   .form-group select:focus + label,
-  .form-group select:valid + label {
+  .form-group select.has-selection + label {
     font-size: 0.625rem;
     top: -6px;
     padding: 0 3px;
   }
-
-  .dropdown-menu {
-    max-height: 150px;
+  .form-group.radio-group {
+    padding: 20px;
+    min-height: 130px;
   }
-
-  .Signup-btn {
-    font-size: 1rem;
-    padding: 0.75rem;
+  .form-group.radio-group .radio-options {
+    gap: 20px;
+    padding: 10px 0;
   }
-
+  .form-group.radio-group .radio-options label {
+    font-size: 11px;
+    padding: 10px 0;
+  }
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .Signup-btn,
   .back-btn {
+    width: 100%;
     font-size: 1rem;
     padding: 0.75rem;
-    margin-top: 1rem;
   }
-
+  .back-btn {
+    margin-top: 0;
+  }
   .success-message {
     font-size: 10px;
     padding: 6px 12px;
   }
-
-  .circle:nth-child(1) {
-    width: 80px;
-    height: 80px;
-    top: 5%;
-    left: 5%;
-  }
-
-  .circle:nth-child(2) {
-    width: 60px;
-    height: 60px;
-    top: 50%;
-    right: 5%;
-  }
-
-  .circle:nth-child(3) {
-    width: 50px;
-    height: 50px;
-    bottom: 10%;
-    left: 15%;
-  }
-
-  .circle:nth-child(4) {
-    width: 70px;
-    height: 70px;
-    top: 20%;
-    right: 10%;
-  }
-
-  .circle:nth-child(5) {
-    width: 60px;
-    height: 60px;
-    bottom: 15%;
-    left: 10%;
-  }
-
+  .circle:nth-child(1) { width: 80px; height: 80px; top: 5%; left: 5%; }
+  .circle:nth-child(2) { width: 60px; height: 60px; top: 50%; right: 5%; }
+  .circle:nth-child(3) { width: 50px; height: 50px; bottom: 10%; left: 15%; }
+  .circle:nth-child(4) { width: 70px; height: 70px; top: 20%; right: 10%; }
+  .circle:nth-child(5) { width: 60px; height: 60px; bottom: 15%; left: 10%; }
   @keyframes move {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(50px, 40px);
-    }
-    50% {
-      transform: translate(40px, 50px);
-    }
-    75% {
-      transform: translate(20px, 30px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(50px, 40px); }
+    50% { transform: translate(40px, 50px); }
+    75% { transform: translate(20px, 30px); }
+    100% { transform: translate(0, 0); }
   }
-
   @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+}
+
+@media (max-width: 360px) {
+  .signup-container {
+    min-width: 16rem;
+    padding: 1rem;
+  }
+  .form-section {
+    padding: 15px;
+  }
+  .form-group.radio-group {
+    padding: 15px;
+    min-height: 120px;
+  }
+  .form-group.radio-group .radio-options {
+    gap: 15px;
+    padding: 8px 0;
+  }
+  .form-group.radio-group .radio-options label {
+    font-size: 10px;
+    padding: 8px 0;
+  }
+  .form-group select.multi-select {
+    padding: 6px;
+  }
+  .form-group select option {
+    padding: 6px;
+    font-size: 11px;
+    line-height: 1.5;
   }
 }

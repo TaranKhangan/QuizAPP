@@ -1,12 +1,65 @@
+/*
 
-import React, { useState,useEffect} from 'react';
+.form-group input[type="radio"] {
+  width: auto ;
+  margin-right: 15px;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.form-group.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100px;
+}
+
+.form-group.radio-group .radio-label {
+  color: rgb(41, 59, 87);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-group.radio-group .radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  padding: 10px 0;
+  width: 100%;
+}
+
+.form-group.radio-group .radio-options label {
+  display: flex;
+  align-items: center;
+  gap:20px;
+  color: rgb(41, 59, 87);
+  font-size:1rem;
+  padding: 5px 0;
+  width: 100%;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+
+.form-group label:not(.radio-label) {
+  color: rgba(86, 59, 241, 0.52);
+  font-size: 14px;
+  font-weight: 500;
+}*/
+
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
-const StudentSignUp = ({ onHomeClick }) => {
+const SignUp = ({ onHomeClick }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    userType: '',
     fullname: '',
     fathername: '',
     gender: '',
@@ -25,40 +78,47 @@ const StudentSignUp = ({ onHomeClick }) => {
     selectedInstitution: '',
     customCoachingName: '',
     grade: '',
+    designation: '',
     username: '',
     password: '',
     confirmPassword: ''
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('handleSubmit called');
-    console.log('Student signing up', {
+    const submitData = {
+      userType: formData.userType,
       fullname: formData.fullname,
       fathername: formData.fathername,
       gender: formData.gender === 'Others' ? formData.customGender : formData.gender,
-      areasOfInterest: formData.areasOfInterest,
+      ...(formData.userType === 'Student' || formData.userType === 'Others' ? { areasOfInterest: formData.areasOfInterest } : {}),
       email: formData.email,
       phoneNumber: formData.phoneNumber,
-      pincode: formData.pincode,
-      city: formData.city,
-      district: formData.district,
-      state: formData.state,
-      institutionType: formData.institutionType,
-      institutionState: formData.institutionState,
-      institutionDistrict: formData.institutionDistrict,
-      institutionCity: formData.institutionCity,
-      selectedInstitution: formData.institutionType === 'Coaching Center' ? formData.customCoachingName : formData.selectedInstitution,
-      grade: formData.grade,
+      ...(formData.userType === 'Student' || formData.userType === 'Others' ? {
+        pincode: formData.pincode,
+        city: formData.city,
+        district: formData.district,
+        state: formData.state
+      } : {}),
+      ...(formData.userType === 'Student' || formData.userType === 'Teacher' ? {
+        institutionType: formData.institutionType,
+        institutionState: formData.institutionState,
+        institutionDistrict: formData.institutionDistrict,
+        institutionCity: formData.institutionCity,
+        selectedInstitution: formData.institutionType === 'Coaching Center' ? formData.customCoachingName : formData.selectedInstitution,
+        ...(formData.userType === 'Student' ? { grade: formData.grade } : { designation: formData.designation })
+      } : {}),
       username: formData.username,
       password: formData.password,
       confirmPassword: formData.confirmPassword
-    });
+    };
+    console.log(`${formData.userType} signing up`, submitData);
     setShowSuccess(true);
     setFormData({
+      userType: '',
       fullname: '',
       fathername: '',
       gender: '',
@@ -77,11 +137,11 @@ const StudentSignUp = ({ onHomeClick }) => {
       selectedInstitution: '',
       customCoachingName: '',
       grade: '',
+      designation: '',
       username: '',
       password: '',
       confirmPassword: ''
     });
-   
   };
 
   useEffect(() => {
@@ -96,8 +156,8 @@ const StudentSignUp = ({ onHomeClick }) => {
   }, [showSuccess]);
 
   useEffect(() => {
-  console.log("areasOfInterest:", formData.areasOfInterest);
-}, [formData.areasOfInterest]);
+    console.log("areasOfInterest:", formData.areasOfInterest);
+  }, [formData.areasOfInterest]);
 
   const handleBackClick = () => {
     onHomeClick();
@@ -108,7 +168,6 @@ const StudentSignUp = ({ onHomeClick }) => {
     const { id, value } = e.target;
     setFormData((prev) => {
       const newFormData = { ...prev, [id]: value };
-
       if (id === 'institutionType') {
         newFormData.institutionState = '';
         newFormData.institutionDistrict = '';
@@ -116,6 +175,7 @@ const StudentSignUp = ({ onHomeClick }) => {
         newFormData.selectedInstitution = '';
         newFormData.customCoachingName = '';
         newFormData.grade = '';
+        newFormData.designation = '';
       } else if (id === 'institutionState') {
         newFormData.institutionDistrict = '';
         newFormData.institutionCity = '';
@@ -129,20 +189,9 @@ const StudentSignUp = ({ onHomeClick }) => {
         newFormData.selectedInstitution = '';
         newFormData.customCoachingName = '';
       }
-
       return newFormData;
     });
   };
-
-  /*const handleInterestChange = (interest) => {
-    setFormData((prev) => {
-      const newInterests = prev.areasOfInterest.includes(interest)
-        ? prev.areasOfInterest.filter((i) => i !== interest)
-        : [...prev.areasOfInterest, interest];
-      return { ...prev, areasOfInterest: newInterests };
-    });
-    setIsInterestsOpen(false); // Hide dropdown after selection
-  };*/
 
   const states = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
@@ -166,29 +215,19 @@ const StudentSignUp = ({ onHomeClick }) => {
   ];
 
   const schools = [
-    'ABC High School',
-    'DEF Academy',
-    'MNO School of Science',
-    'QRS School of Business',
-    'ZAB School of Law'
+    'ABC High School', 'DEF Academy', 'MNO School of Science',
+    'QRS School of Business', 'ZAB School of Law'
   ];
 
   const colleges = [
-    'PQR College',
-    'JKL College of Arts',
-    'UVW College of Commerce',
-    'TUV College of Education',
-    'FGH College of Hospitality',
-    'Beant College of Engineering',
-    'BHM College of Management'
+    'PQR College', 'JKL College of Arts', 'UVW College of Commerce',
+    'TUV College of Education', 'FGH College of Hospitality',
+    'Beant College of Engineering', 'BHM College of Management'
   ];
 
   const universities = [
-    'XYZ University',
-    'RST University of Engineering',
-    'CDE University of Medicine',
-    'GNDU University',
-    'Guru Nanak Dev Engineering College'
+    'XYZ University', 'RST University of Engineering', 'CDE University of Medicine',
+    'GNDU University', 'Guru Nanak Dev Engineering College'
   ];
 
   const interests = [
@@ -198,58 +237,37 @@ const StudentSignUp = ({ onHomeClick }) => {
     'Space / Astronomy', 'Arts'
   ];
 
-  const schoolGrades = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'
-  ];
-
-  const collegeUniversityCourses = [
-    'BA', 'MA', 'BSc', 'MSc', 'BCom', 'MCom', 'BCA', 'MCA', 'BTech', 'MTech', 'BBA', 'MBA', 'Polytechnic'
-  ];
-
-  const coachingExams = [
-    'JEE', 'NEET', 'SSC', 'UPSC', 'Railway'
-  ];
+  const schoolGrades = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  const collegeUniversityCourses = ['BA', 'MA', 'BSc', 'MSc', 'BCom', 'MCom', 'BCA', 'MCA', 'BTech', 'MTech', 'BBA', 'MBA', 'Polytechnic'];
+  const coachingExams = ['JEE', 'NEET', 'SSC', 'UPSC', 'Railway'];
 
   const getInstitutions = () => {
     switch (formData.institutionType) {
-      case 'School':
-        return schools;
-      case 'College':
-        return colleges;
-      case 'University':
-        return universities;
-      case 'Coaching Center':
-        return [];
-      default:
-        return [];
+      case 'School': return schools;
+      case 'College': return colleges;
+      case 'University': return universities;
+      case 'Coaching Center': return [];
+      default: return [];
     }
   };
 
   const getGradeOptions = () => {
     switch (formData.institutionType) {
-      case 'School':
-        return schoolGrades;
+      case 'School': return schoolGrades;
       case 'College':
-      case 'University':
-        return collegeUniversityCourses;
-      case 'Coaching Center':
-        return coachingExams;
-      default:
-        return [];
+      case 'University': return collegeUniversityCourses;
+      case 'Coaching Center': return coachingExams;
+      default: return [];
     }
   };
 
   const getGradeLabel = () => {
     switch (formData.institutionType) {
-      case 'School':
-        return 'Grade';
+      case 'School': return 'Grade';
       case 'College':
-      case 'University':
-        return 'Course';
-      case 'Coaching Center':
-        return 'Exam';
-      default:
-        return 'Qualification';
+      case 'University': return 'Course';
+      case 'Coaching Center': return 'Exam';
+      default: return 'Qualification';
     }
   };
 
@@ -266,372 +284,409 @@ const StudentSignUp = ({ onHomeClick }) => {
         <div className="success-message show">Sign Up Successful!</div>
       )}
       <div className="signup-container">
-        <h2>Student Sign Up</h2>
+        <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          {/* Personal Details Section */}
           <fieldset className="form-section">
-            <legend>Personal Details</legend>
+            <legend>User Type</legend>
             <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="fullname"
-                  required
-                  placeholder=" "
-                  value={formData.fullname}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="fullname">Full Name</label>
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="fathername"
-                  required
-                  placeholder=" "
-                  value={formData.fathername}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="fathername">Father's Name</label>
+              <div className="form-group radio-group">
+                <label className="radio-label">Select User Type</label>
+                <div className="radio-options">
+                  <label>
+                    <input
+                      type="radio"
+                      name="userType"
+                      value="Student"
+                      checked={formData.userType === 'Student'}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, userType: e.target.value }))}
+                    />
+                    Student
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="userType"
+                      value="Teacher"
+                      checked={formData.userType === 'Teacher'}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, userType: e.target.value }))}
+                    />
+                    Teacher
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="userType"
+                      value="Others"
+                      checked={formData.userType === 'Others'}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, userType: e.target.value }))}
+                    />
+                    Others
+                  </label>
+                </div>
               </div>
             </div>
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="gender"
-                  required
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Others">Others</option>
-                </select>
-                <label htmlFor="gender">Gender</label>
-              </div>
-              {formData.gender === 'Others' && (
+          </fieldset>
+
+          {formData.userType && (
+            <fieldset className="form-section">
+              <legend>Personal Details</legend>
+              <div className="form-row">
                 <div className="form-group">
                   <input
                     type="text"
-                    id="customGender"
+                    id="fullname"
                     required
                     placeholder=" "
-                    value={formData.customGender}
+                    value={formData.fullname}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="customGender">Specify Gender</label>
+                  <label htmlFor="fullname">Full Name</label>
                 </div>
-              )}
-            </div>
-           {/*
-           <div className="form-row ">
-      <div className="form-group ">
-        <select
-          id="areasOfInterest"
-          name="areasOfInterest" > 
-          <option value="" disabled hidden>
-            Select Area of Interest
-          </option>
-          {interests.map((interest) => (
-            <option key={interest} value={interest}>
-              {interest}
-            </option>
-          ))}
-        </select>
-        <label
-          htmlFor="areasOfInterest">
-          Areas of Interest
-        </label>
-      </div>
-    </div>
-      */}
-    
-         <div className="form-row">
-
-  <div className="form-group">
-    <select
-      id="areasOfInterest"
-      name="areasOfInterest" required 
-      value={formData.areasOfInterest}
-      onChange={handleInputChange}
-     
-    >
-       <option value="" disabled selected hidden></option>
-      {interests.map((interest) => (
-        <option key={interest} value={interest}>
-          {interest}
-        </option>
-      ))}
-    </select>
-    <label htmlFor="areasOfInterest">Areas of Interest</label>
-  </div>
-</div>
-          </fieldset>
-
-          {/* Contact Details Section */}
-          <fieldset className="form-section">
-            <legend>Contact Details</legend>
-            <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  placeholder=" "
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="tel"
-                  id="phoneNumber"
-                  required
-                  placeholder=" "
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="phoneNumber">Phone Number</label>
-              </div>
-            </div>
-          </fieldset>
-
-          {/* Address Section */}
-          <fieldset className="form-section">
-            <legend>Address</legend>
-            <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="pincode"
-                  required
-                  placeholder=" "
-                  value={formData.pincode}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="pincode">Pincode</label>
-              </div>
-              <div className="form-group">
-                <select
-                  id="city"
-                  name="city"
-                  required
-                  value={formData.city}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                </select>
-                <label htmlFor="city">City/Village</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="district"
-                  name="district"
-                  required
-                  value={formData.district}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {districts.map((district) => (
-                    <option key={district} value={district}>{district}</option>
-                  ))}
-                </select>
-                <label htmlFor="district">District</label>
-              </div>
-              <div className="form-group">
-                <select
-                  id="state"
-                  name="state"
-                  required
-                  value={formData.state}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {states.map((state) => (
-                    <option key={state} value={state}>{state}</option>
-                  ))}
-                </select>
-                <label htmlFor="state">State</label>
-              </div>
-            </div>
-          </fieldset>
-
-          {/* Educational Details Section */}
-          <fieldset className="form-section">
-            <legend>Educational Details</legend>
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="institutionType"
-                  name="institutionType"
-                  value={formData.institutionType}
-                  onChange={handleInputChange}
-                >
-                  <option value="" disabled selected hidden></option>
-                  <option value="School">School</option>
-                  <option value="College">College</option>
-                  <option value="University">University</option>
-                  <option value="Coaching Center">Coaching Center</option>
-                </select>
-                <label htmlFor="institutionType">Institution Type</label>
-              </div>
-              <div className="form-group">
-                <select
-                  id="institutionState"
-                  name="institutionState"
-                  required
-                  value={formData.institutionState}
-                  onChange={handleInputChange}
-                  disabled={!formData.institutionType}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {states.map((state) => (
-                    <option key={state} value={state}>{state}</option>
-                  ))}
-                </select>
-                <label htmlFor="institutionState">Institution State</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="institutionDistrict"
-                  name="institutionDistrict"
-                  value={formData.institutionDistrict}
-                  onChange={handleInputChange}
-                  disabled={!formData.institutionState}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {districts.map((district) => (
-                    <option key={district} value={district}>{district}</option>
-                  ))}
-                </select>
-                <label htmlFor="institutionDistrict">Institution District</label>
-              </div>
-              <div className="form-group">
-                <select
-                  id="institutionCity"
-                  name="institutionCity"
-                  value={formData.institutionCity}
-                  onChange={handleInputChange}
-                  disabled={!formData.institutionDistrict}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                </select>
-                <label htmlFor="institutionCity">Institution City</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                {formData.institutionType === 'Coaching Center' ? (
+                <div className="form-group">
                   <input
                     type="text"
-                    id="customCoachingName"
+                    id="fathername"
+                    required
                     placeholder=" "
-                    value={formData.customCoachingName}
+                    value={formData.fathername}
                     onChange={handleInputChange}
                   />
-                ) : (
+                  <label htmlFor="fathername">Father's Name</label>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
                   <select
-                    id="selectedInstitution"
-                    name="selectedInstitution"
+                    id="gender"
                     required
-                    value={formData.selectedInstitution}
+                    value={formData.gender}
                     onChange={handleInputChange}
-                    disabled={!formData.institutionCity}
                   >
                     <option value="" disabled selected hidden></option>
-                    {getInstitutions().map((institution) => (
-                      <option key={institution} value={institution}>
-                        {institution}
-                      </option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  <label htmlFor="gender">Gender</label>
+                </div>
+                {formData.gender === 'Others' && (
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      id="customGender"
+                      required
+                      placeholder=" "
+                      value={formData.customGender}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="customGender">Specify Gender</label>
+                  </div>
+                )}
+              </div>
+              {(formData.userType === 'Student' || formData.userType === 'Others') && (
+                <div className="form-row">
+                  <div className="form-group">
+                    <select
+                      id="areasOfInterest"
+                      name="areasOfInterest"
+                      required
+                      value={formData.areasOfInterest}
+                      onChange={handleInputChange}
+                     
+                    >
+                      <option value="" disabled selected hidden></option>
+                      {interests.map((interest) => (
+                        <option key={interest} value={interest}>
+                          {interest}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="areasOfInterest">Areas of Interest</label>
+                  </div>
+                </div>
+              )}
+            </fieldset>
+          )}
+
+          {formData.userType && (
+            <fieldset className="form-section">
+              <legend>Contact Details</legend>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="email"
+                    id="email"
+                    required
+                    placeholder=" "
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="email">Email</label>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    required
+                    placeholder=" "
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="phoneNumber">Phone Number</label>
+                </div>
+              </div>
+            </fieldset>
+          )}
+
+          {(formData.userType === 'Student' || formData.userType === 'Others') && (
+            <fieldset className="form-section">
+              <legend>Address</legend>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="pincode"
+                    required
+                    placeholder=" "
+                    value={formData.pincode}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="pincode">Pincode</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="city"
+                    name="city"
+                    required
+                    value={formData.city}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>{city}</option>
                     ))}
                   </select>
-                )}
-                <label htmlFor={formData.institutionType === 'Coaching Center' ? 'customCoachingName' : 'selectedInstitution'}>
-                  {formData.institutionType === 'Coaching Center' ? 'Coaching Center Name' : 'Institution Name'}
-                </label>
+                  <label htmlFor="city">City/Village</label>
+                </div>
               </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <select
-                  id="grade"
-                  name="grade"
-                  required
-                  value={formData.grade}
-                  onChange={handleInputChange}
-                  disabled={!formData.institutionType}
-                >
-                  <option value="" disabled selected hidden></option>
-                  {getGradeOptions().map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="grade">{getGradeLabel()}</label>
+              <div className="form-row">
+                <div className="form-group">
+                  <select
+                    id="district"
+                    name="district"
+                    required
+                    value={formData.district}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {districts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="district">District</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="state"
+                    name="state"
+                    required
+                    value={formData.state}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>{state}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="state">State</label>
+                </div>
               </div>
-            </div>
-          </fieldset>
+            </fieldset>
+          )}
 
-          {/* Account Details Section */}
-          <fieldset className="form-section">
-            <legend>Account Details</legend>
-            <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="username"
-                  required
-                  placeholder=" "
-                  value={formData.username}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="username">Username</label>
+          {(formData.userType === 'Student' || formData.userType === 'Teacher') && (
+            <fieldset className="form-section">
+              <legend>{formData.userType === 'Student' ? 'Educational Details' : 'Institutional Details'}</legend>
+              <div className="form-row">
+                <div className="form-group">
+                  <select
+                    id="institutionType"
+                    name="institutionType"
+                    value={formData.institutionType}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    <option value="School">School</option>
+                    <option value="College">College</option>
+                    <option value="University">University</option>
+                    <option value="Coaching Center">Coaching Center</option>
+                  </select>
+                  <label htmlFor="institutionType">Institution Type</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="institutionState"
+                    name="institutionState"
+                    required
+                    value={formData.institutionState}
+                    onChange={handleInputChange}
+                    disabled={!formData.institutionType}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>{state}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="institutionState">Institution State</label>
+                </div>
               </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <input
-                  type="password"
-                  id="password"
-                  required
-                  placeholder=" "
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="password">Password</label>
+              <div className="form-row">
+                <div className="form-group">
+                  <select
+                    id="institutionDistrict"
+                    name="institutionDistrict"
+                    value={formData.institutionDistrict}
+                    onChange={handleInputChange}
+                    disabled={!formData.institutionState}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {districts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="institutionDistrict">Institution District</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="institutionCity"
+                    name="institutionCity"
+                    value={formData.institutionCity}
+                    onChange={handleInputChange}
+                    disabled={!formData.institutionDistrict}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="institutionCity">Institution City</label>
+                </div>
               </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  required
-                  placeholder=" "
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="confirmPassword">Confirm Password</label>
+              <div className="form-row">
+                <div className="form-group">
+                  {formData.institutionType === 'Coaching Center' ? (
+                    <input
+                      type="text"
+                      id="customCoachingName"
+                      placeholder=" "
+                      value={formData.customCoachingName}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <select
+                      id="selectedInstitution"
+                      name="selectedInstitution"
+                      required
+                      value={formData.selectedInstitution}
+                      onChange={handleInputChange}
+                      disabled={!formData.institutionCity}
+                    >
+                      <option value="" disabled selected hidden></option>
+                      {getInstitutions().map((institution) => (
+                        <option key={institution} value={institution}>
+                          {institution}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                  <label htmlFor={formData.institutionType === 'Coaching Center' ? 'customCoachingName' : 'selectedInstitution'}>
+                    {formData.institutionType === 'Coaching Center' ? 'Coaching Center Name' : 'Institution Name'}
+                  </label>
+                </div>
               </div>
-            </div>
-          </fieldset>
+              <div className="form-row">
+                <div className="form-group">
+                  {formData.userType === 'Student' ? (
+                    <select
+                      id="grade"
+                      name="grade"
+                      required
+                      value={formData.grade}
+                      onChange={handleInputChange}
+                      disabled={!formData.institutionType}
+                    >
+                      <option value="" disabled selected hidden></option>
+                      {getGradeOptions().map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      id="designation"
+                      required
+                      placeholder=" "
+                      value={formData.designation}
+                      onChange={handleInputChange}
+                    />
+                  )}
+                  <label htmlFor={formData.userType === 'Student' ? 'grade' : 'designation'}>
+                    {formData.userType === 'Student' ? getGradeLabel() : 'Designation'}
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          )}
 
-          {/* Buttons */}
+          {formData.userType && (
+            <fieldset className="form-section">
+              <legend>Account Details</legend>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="username"
+                    required
+                    placeholder=" "
+                    value={formData.username}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="username">Username</label>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="password"
+                    id="password"
+                    required
+                    placeholder=" "
+                    value={formData.password}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="password">Password</label>
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    required
+                    placeholder=" "
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                </div>
+              </div>
+            </fieldset>
+          )}
+
           <div className="button-container">
-            <button type="submit" className="Signup-btn">Sign Up</button>
+            <button type="submit" className="Signup-btn" disabled={!formData.userType}>Sign Up</button>
             <button type="button" className="back-btn" onClick={handleBackClick}>Back to Home</button>
           </div>
         </form>
@@ -640,4 +695,4 @@ const StudentSignUp = ({ onHomeClick }) => {
   );
 };
 
-export default StudentSignUp;
+export default SignUp;
