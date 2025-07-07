@@ -256,7 +256,7 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(45deg, rgba(122, 145, 248, 0.92), rgb(236, 243, 239), rgba(110, 133, 207, 0.84));
-  color: rgb(51, 91, 107);
+  color: #306994;
   padding: 0.625rem 1.25rem;
   border-radius: 0.625rem;
   font-size: 0.875rem;
@@ -357,7 +357,7 @@
     border-radius: 0.9375rem;
   }
   .signup-container h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 1.25rem;
   }
   .form-group {
@@ -397,7 +397,8 @@
     margin-top: 0;
   }
   .success-message {
-    font-size: 0.625rem;
+    font-size: 1rem;
+    font-weight: 600;
     padding: 0.375rem 0.75rem;
   }
   .circle:nth-child(1) { width: 5rem; height: 5rem; top: 5%; left: 5%; }
