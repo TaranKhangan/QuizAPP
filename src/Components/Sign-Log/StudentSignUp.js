@@ -48,7 +48,78 @@
   color: rgba(86, 59, 241, 0.52);
   font-size: 14px;
   font-weight: 500;
-}*/
+}
+  {(formData.userType === 'Student' || formData.userType === 'Others') && (
+            <fieldset className="form-section">
+              <legend>Address</legend>
+              <div className="form-row">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="pincode"
+                    required
+                    placeholder=" "
+                    value={formData.pincode}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="pincode">Pincode</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="city"
+                    name="city"
+                    required
+                    value={formData.city}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="city">City/Village</label>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <select
+                    id="district"
+                    name="district"
+                    required
+                    value={formData.district}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {districts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="district">District</label>
+                </div>
+                <div className="form-group">
+                  <select
+                    id="state"
+                    name="state"
+                    required
+                    value={formData.state}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled selected hidden></option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>{state}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="state">State</label>
+                </div>
+              </div>
+            </fieldset>
+          )}
+
+          bruhhh now the thing is that everything is good but when the screen size reaches 800 then the input fields.. gets unusual spacing between some input field whereas is just so good in others.. like right now after the 800px the full name has little more bottom margin then others..and similarly when i hit the gender and select othes then a specific gender input field comes bruhh its also having unusual spacing on top .. and similarly in institution type field. too then in confirm password also have the same issue uske upr bhi kafi spacing aa rhi hai apne aap... pata nhi kyu its like its not uniform .. and i am worried 
+
+
+The issue you're facing with the spacing of input fields at different screen sizes is likely due to the CSS styles applied to those elements. To ensure uniform spacing across all input fields, you can adjust the CSS styles for the form elements, especially for the `input`, `select`, and `textarea` elements.
+*/
 
 
 import React, { useState, useEffect } from 'react';
@@ -336,24 +407,26 @@ const SignUp = ({ onHomeClick }) => {
                     type="text"
                     id="fullname"
                     required
-                    placeholder=" "
+                    placeholder="Full Name "
                     value={formData.fullname}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="fullname">Full Name</label>
+                  <label htmlFor="fullname"></label>
                 </div>
+                {(formData.userType === 'Student' || formData.userType === 'Others') && (
                 <div className="form-group">
                   <input
                     type="text"
                     id="fathername"
                     required
-                    placeholder=" "
+                    placeholder="Father's Name "
                     value={formData.fathername}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="fathername">Father's Name</label>
-                </div>
+                  <label htmlFor="fathername"></label>
+                </div>)}
               </div>
+                   
               <div className="form-row">
                 <div className="form-group">
                   <select
@@ -362,12 +435,12 @@ const SignUp = ({ onHomeClick }) => {
                     value={formData.gender}
                     onChange={handleInputChange}
                   >
-                    <option value="" disabled selected hidden></option>
+                    <option value="" disabled selected hidden>Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Others">Others</option>
                   </select>
-                  <label htmlFor="gender">Gender</label>
+                  <label htmlFor="gender"></label>
                 </div>
                 {formData.gender === 'Others' && (
                   <div className="form-group">
@@ -375,11 +448,11 @@ const SignUp = ({ onHomeClick }) => {
                       type="text"
                       id="customGender"
                       required
-                      placeholder=" "
+                      placeholder="Specific Gender"
                       value={formData.customGender}
                       onChange={handleInputChange}
                     />
-                    <label htmlFor="customGender">Specify Gender</label>
+                    <label htmlFor="customGender"></label>
                   </div>
                 )}
               </div>
@@ -394,14 +467,14 @@ const SignUp = ({ onHomeClick }) => {
                       onChange={handleInputChange}
                      
                     >
-                      <option value="" disabled selected hidden></option>
+                      <option value="" disabled selected hidden>Area of Interest</option>
                       {interests.map((interest) => (
                         <option key={interest} value={interest}>
                           {interest}
                         </option>
                       ))}
                     </select>
-                    <label htmlFor="areasOfInterest">Areas of Interest</label>
+                    <label htmlFor="areasOfInterest"></label>
                   </div>
                 </div>
               )}
@@ -417,95 +490,30 @@ const SignUp = ({ onHomeClick }) => {
                     type="email"
                     id="email"
                     required
-                    placeholder=" "
+                    placeholder="Email "
                     value={formData.email}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email"></label>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <input
-                    type="tel"
+                    type="number"
                     id="phoneNumber"
                     required
-                    placeholder=" "
+                    placeholder="Phone Number "
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="phoneNumber">Phone Number</label>
+                  <label htmlFor="phoneNumber"></label>
                 </div>
               </div>
             </fieldset>
           )}
 
-          {(formData.userType === 'Student' || formData.userType === 'Others') && (
-            <fieldset className="form-section">
-              <legend>Address</legend>
-              <div className="form-row">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    id="pincode"
-                    required
-                    placeholder=" "
-                    value={formData.pincode}
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="pincode">Pincode</label>
-                </div>
-                <div className="form-group">
-                  <select
-                    id="city"
-                    name="city"
-                    required
-                    value={formData.city}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {cities.map((city) => (
-                      <option key={city} value={city}>{city}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="city">City/Village</label>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <select
-                    id="district"
-                    name="district"
-                    required
-                    value={formData.district}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {districts.map((district) => (
-                      <option key={district} value={district}>{district}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="district">District</label>
-                </div>
-                <div className="form-group">
-                  <select
-                    id="state"
-                    name="state"
-                    required
-                    value={formData.state}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {states.map((state) => (
-                      <option key={state} value={state}>{state}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="state">State</label>
-                </div>
-              </div>
-            </fieldset>
-          )}
-
+          
           {(formData.userType === 'Student' || formData.userType === 'Teacher') && (
             <fieldset className="form-section">
               <legend>{formData.userType === 'Student' ? 'Educational Details' : 'Institutional Details'}</legend>
@@ -517,13 +525,13 @@ const SignUp = ({ onHomeClick }) => {
                     value={formData.institutionType}
                     onChange={handleInputChange}
                   >
-                    <option value="" disabled selected hidden></option>
+                    <option value="" disabled selected hidden>Institution Type</option>
                     <option value="School">School</option>
                     <option value="College">College</option>
                     <option value="University">University</option>
                     <option value="Coaching Center">Coaching Center</option>
                   </select>
-                  <label htmlFor="institutionType">Institution Type</label>
+                  <label htmlFor="institutionType"></label>
                 </div>
                 <div className="form-group">
                   <select
@@ -534,12 +542,12 @@ const SignUp = ({ onHomeClick }) => {
                     onChange={handleInputChange}
                     disabled={!formData.institutionType}
                   >
-                    <option value="" disabled selected hidden></option>
+                    <option value="" disabled selected hidden>Institution State</option>
                     {states.map((state) => (
                       <option key={state} value={state}>{state}</option>
                     ))}
                   </select>
-                  <label htmlFor="institutionState">Institution State</label>
+                  <label htmlFor="institutionState"></label>
                 </div>
               </div>
               <div className="form-row">
@@ -551,12 +559,12 @@ const SignUp = ({ onHomeClick }) => {
                     onChange={handleInputChange}
                     disabled={!formData.institutionState}
                   >
-                    <option value="" disabled selected hidden></option>
+                    <option value="" disabled selected hidden>Institution District</option>
                     {districts.map((district) => (
                       <option key={district} value={district}>{district}</option>
                     ))}
                   </select>
-                  <label htmlFor="institutionDistrict">Institution District</label>
+                  <label htmlFor="institutionDistrict"></label>
                 </div>
                 <div className="form-group">
                   <select
@@ -566,12 +574,12 @@ const SignUp = ({ onHomeClick }) => {
                     onChange={handleInputChange}
                     disabled={!formData.institutionDistrict}
                   >
-                    <option value="" disabled selected hidden></option>
+                    <option value="" disabled selected hidden>Institution City</option>
                     {cities.map((city) => (
                       <option key={city} value={city}>{city}</option>
                     ))}
                   </select>
-                  <label htmlFor="institutionCity">Institution City</label>
+                  <label htmlFor="institutionCity"></label>
                 </div>
               </div>
               <div className="form-row">
@@ -593,7 +601,7 @@ const SignUp = ({ onHomeClick }) => {
                       onChange={handleInputChange}
                       disabled={!formData.institutionCity}
                     >
-                      <option value="" disabled selected hidden></option>
+                      <option value="" disabled selected hidden>  {formData.institutionType === 'Coaching Center' ? 'Coaching Center Name' : 'Institution Name'}</option>
                       {getInstitutions().map((institution) => (
                         <option key={institution} value={institution}>
                           {institution}
@@ -602,7 +610,7 @@ const SignUp = ({ onHomeClick }) => {
                     </select>
                   )}
                   <label htmlFor={formData.institutionType === 'Coaching Center' ? 'customCoachingName' : 'selectedInstitution'}>
-                    {formData.institutionType === 'Coaching Center' ? 'Coaching Center Name' : 'Institution Name'}
+                  
                   </label>
                 </div>
               </div>
@@ -617,7 +625,7 @@ const SignUp = ({ onHomeClick }) => {
                       onChange={handleInputChange}
                       disabled={!formData.institutionType}
                     >
-                      <option value="" disabled selected hidden></option>
+                      <option value="" disabled selected hidden>  {formData.userType === 'Student' ? getGradeLabel() : 'Designation'}</option>
                       {getGradeOptions().map((option) => (
                         <option key={option} value={option}>
                           {option}
@@ -635,7 +643,7 @@ const SignUp = ({ onHomeClick }) => {
                     />
                   )}
                   <label htmlFor={formData.userType === 'Student' ? 'grade' : 'designation'}>
-                    {formData.userType === 'Student' ? getGradeLabel() : 'Designation'}
+                  
                   </label>
                 </div>
               </div>
@@ -651,11 +659,11 @@ const SignUp = ({ onHomeClick }) => {
                     type="text"
                     id="username"
                     required
-                    placeholder=" "
+                    placeholder=" Username"
                     value={formData.username}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="username"></label>
                 </div>
               </div>
               <div className="form-row">
@@ -664,22 +672,22 @@ const SignUp = ({ onHomeClick }) => {
                     type="password"
                     id="password"
                     required
-                    placeholder=" "
+                    placeholder="Password "
                     value={formData.password}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password"></label>
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
                     id="confirmPassword"
                     required
-                    placeholder=" "
+                    placeholder="Confirm Password"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <label htmlFor="confirmPassword"> </label>
                 </div>
               </div>
             </fieldset>
