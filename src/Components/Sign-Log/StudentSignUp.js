@@ -221,7 +221,7 @@ const SignUp = ({ onHomeClick }) => {
       const timer = setTimeout(() => {
         console.log('Hiding success message');
         setShowSuccess(false);
-      }, 3000);
+      }, 8000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);
@@ -637,7 +637,7 @@ const SignUp = ({ onHomeClick }) => {
                       type="text"
                       id="designation"
                       required
-                      placeholder=" "
+                      placeholder="Designation "
                       value={formData.designation}
                       onChange={handleInputChange}
                     />
