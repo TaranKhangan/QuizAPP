@@ -1,6 +1,5 @@
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////NEW DRAMA................................//////////////////////////////////////////////////////
 
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -8,9 +7,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import refLogo from '../../assets/Logo-Sahash.jpeg';
 
-const Navbar = ({ onLoginClick, onHomeClick }) => {
+const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  //const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const mobileNavRef = useRef(null);
   const mobileToggleRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -18,13 +17,13 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    if (isDropdownOpen) setIsDropdownOpen(false);
+//    if (isDropdownOpen) setIsDropdownOpen(false);
   };
 
-  const toggleDropdown = (e) => {
-    e.stopPropagation();
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  //const toggleDropdown = (e) => {
+    //e.stopPropagation();
+    //setIsDropdownOpen(!isDropdownOpen);
+  //};
 
   const handleScroll = (sectionId) => {
     if (window.location.pathname !== '/') {
@@ -48,7 +47,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
       }
     }
     setIsMenuOpen(false);
-    setIsDropdownOpen(false);
+    //setIsDropdownOpen(false);
   };
 
   const handleLogin = () => {
@@ -60,6 +59,16 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
       navigate('/login');
     }
   };
+  const handleSignup = ()=>{
+    if (onSignupClick){
+      onSignupClick();
+      setIsMenuOpen(false);
+    }
+    else{
+      console.warn('onSignupClick not provided');
+      navigate('/signup');
+    }
+  }
 
   const handleHome = () => {
     if (onHomeClick) {
@@ -78,14 +87,14 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
         !mobileToggleRef.current.contains(event.target)
       ) {
         setIsMenuOpen(false);
-        setIsDropdownOpen(false);
+        //setIsDropdownOpen(false);
       }
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
         !event.target.closest('.signup-btn')
       ) {
-        setIsDropdownOpen(false);
+        //setIsDropdownOpen(false);
       }
     };
     document.addEventListener('click', handleOutsideClick);
@@ -104,6 +113,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
   }, [isMenuOpen]);
 
   return (
+    
     <nav className="sahash-navbar" role="banner">
       <div className="nav-bar container" role="navigation" aria-label="Main navigation">
         <div className="logo-container">
@@ -159,18 +169,18 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
             <button className="login-btn" onClick={handleLogin} tabIndex={isMenuOpen ? 0 : -1}>
               Login
             </button>
-            <div className="dropdown" ref={dropdownRef}>
-              <button className="signup-btn" onClick={toggleDropdown} tabIndex={isMenuOpen ? 0 : -1}>
+            <div >{/**className="dropdown" ref={dropdownRef} */}
+              <button className="signup-btn" onClick={handleSignup} tabIndex={isMenuOpen ? 0 : -1}>
                 Sign Up
               </button>
-              <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+             {/** <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
                 <Link to="/teacher-signup" onClick={() => { setIsMenuOpen(false); setIsDropdownOpen(false); }}>
                   Teacher
                 </Link>
                 <Link to="/student-signup" onClick={() => { setIsMenuOpen(false); setIsDropdownOpen(false); }}>
                   Student
                 </Link>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
@@ -213,18 +223,18 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
           <button className="login-btn" onClick={handleLogin}>
             Login
           </button>
-          <div className="dropdown" ref={dropdownRef}>
-            <button className="signup-btn" onClick={toggleDropdown}>
+          <div >{/**className="dropdown" ref={dropdownRef} */}
+            <button className="signup-btn" onClick={handleSignup}>
               Sign Up
             </button>
-            <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+            {/**<div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
               <Link to="/teacher-signup" onClick={() => setIsDropdownOpen(false)}>
                 Teacher
               </Link>
               <Link to="/student-signup" onClick={() => setIsDropdownOpen(false)}>
                 Student
               </Link>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>

@@ -6,8 +6,8 @@ import './App.css';
 import Home from './Components/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/Sign-Log/Login';
-import TeacherSignUp from './Components/Sign-Log/TeacherSignUp';
-import StudentSignUp from './Components/Sign-Log/StudentSignUp';
+//import TeacherSignUp from './Components/Sign-Log/TeacherSignUp';
+import SignUp from './Components/Sign-Log/SignUp';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -30,13 +30,13 @@ const App = () => {
             path="/"
             element={showLogin ? <Login /> : <Home onLoginClick={handleLoginClick} />}
           />
-          <Route
+         {/** <Route
             path="/teacher-signup"
             element={<TeacherSignUp onHomeClick={handleHomeClick} />}
-          />
+          /> */}
           <Route
-            path="/student-signup"
-            element={<StudentSignUp onHomeClick={handleHomeClick} />}
+            path="/signup"
+            element={<SignUp onHomeClick={handleHomeClick} />}
           />
         </Routes>
       </div>

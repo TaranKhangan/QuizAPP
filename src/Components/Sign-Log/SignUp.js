@@ -1,125 +1,3 @@
-/*
-
-.form-group input[type="radio"] {
-  width: auto ;
-  margin-right: 15px;
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-.form-group.radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  min-height: 100px;
-}
-
-.form-group.radio-group .radio-label {
-  color: rgb(41, 59, 87);
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.form-group.radio-group .radio-options {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  
-  padding: 10px 0;
-  width: 100%;
-}
-
-.form-group.radio-group .radio-options label {
-  display: flex;
-  align-items: center;
-  gap:20px;
-  color: rgb(41, 59, 87);
-  font-size:1rem;
-  padding: 5px 0;
-  width: 100%;
-  line-height: 1.5;
-  cursor: pointer;
-}
-
-
-.form-group label:not(.radio-label) {
-  color: rgba(86, 59, 241, 0.52);
-  font-size: 14px;
-  font-weight: 500;
-}
-  {(formData.userType === 'Student' || formData.userType === 'Others') && (
-            <fieldset className="form-section">
-              <legend>Address</legend>
-              <div className="form-row">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    id="pincode"
-                    required
-                    placeholder=" "
-                    value={formData.pincode}
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="pincode">Pincode</label>
-                </div>
-                <div className="form-group">
-                  <select
-                    id="city"
-                    name="city"
-                    required
-                    value={formData.city}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {cities.map((city) => (
-                      <option key={city} value={city}>{city}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="city">City/Village</label>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <select
-                    id="district"
-                    name="district"
-                    required
-                    value={formData.district}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {districts.map((district) => (
-                      <option key={district} value={district}>{district}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="district">District</label>
-                </div>
-                <div className="form-group">
-                  <select
-                    id="state"
-                    name="state"
-                    required
-                    value={formData.state}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled selected hidden></option>
-                    {states.map((state) => (
-                      <option key={state} value={state}>{state}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="state">State</label>
-                </div>
-              </div>
-            </fieldset>
-          )}
-
-          bruhhh now the thing is that everything is good but when the screen size reaches 800 then the input fields.. gets unusual spacing between some input field whereas is just so good in others.. like right now after the 800px the full name has little more bottom margin then others..and similarly when i hit the gender and select othes then a specific gender input field comes bruhh its also having unusual spacing on top .. and similarly in institution type field. too then in confirm password also have the same issue uske upr bhi kafi spacing aa rhi hai apne aap... pata nhi kyu its like its not uniform .. and i am worried 
-
-
-The issue you're facing with the spacing of input fields at different screen sizes is likely due to the CSS styles applied to those elements. To ensure uniform spacing across all input fields, you can adjust the CSS styles for the form elements, especially for the `input`, `select`, and `textarea` elements.
-*/
 
 
 import React, { useState, useEffect } from 'react';
@@ -155,10 +33,10 @@ const SignUp = ({ onHomeClick }) => {
     confirmPassword: ''
   });
 
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);//for success message
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     console.log('handleSubmit called');
     const submitData = {
       userType: formData.userType,
@@ -214,18 +92,19 @@ const SignUp = ({ onHomeClick }) => {
       confirmPassword: ''
     });
   };
-
+// for success message
   useEffect(() => {
     if (showSuccess) {
       console.log('Success message should be visible');
       const timer = setTimeout(() => {
         console.log('Hiding success message');
         setShowSuccess(false);
-      }, 8000);
+      }, 4000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);
-
+  
+// for areas of interest
   useEffect(() => {
     console.log("areasOfInterest:", formData.areasOfInterest);
   }, [formData.areasOfInterest]);
@@ -234,7 +113,7 @@ const SignUp = ({ onHomeClick }) => {
     onHomeClick();
     navigate('/');
   };
-
+//for institution details
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => {
@@ -331,7 +210,7 @@ const SignUp = ({ onHomeClick }) => {
       default: return [];
     }
   };
-
+//to get the grade label(grade, course, exam) based on institution type
   const getGradeLabel = () => {
     switch (formData.institutionType) {
       case 'School': return 'Grade';
@@ -354,9 +233,11 @@ const SignUp = ({ onHomeClick }) => {
       {showSuccess && (
         <div className="success-message show">Sign Up Successful!</div>
       )}
+      
       <div className="signup-container">
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
+          {/**For Selecting User Type*/}
           <fieldset className="form-section">
             <legend>User Type</legend>
             <div className="form-row">
@@ -398,6 +279,7 @@ const SignUp = ({ onHomeClick }) => {
             </div>
           </fieldset>
 
+            {/** Personal Details*/}
           {formData.userType && (
             <fieldset className="form-section">
               <legend>Personal Details</legend>
@@ -480,7 +362,7 @@ const SignUp = ({ onHomeClick }) => {
               )}
             </fieldset>
           )}
-
+             {/**Contact details */}
           {formData.userType && (
             <fieldset className="form-section">
               <legend>Contact Details</legend>
@@ -513,7 +395,7 @@ const SignUp = ({ onHomeClick }) => {
             </fieldset>
           )}
 
-          
+          {/** Institutional/Educational Details*/}
           {(formData.userType === 'Student' || formData.userType === 'Teacher') && (
             <fieldset className="form-section">
               <legend>{formData.userType === 'Student' ? 'Educational Details' : 'Institutional Details'}</legend>
@@ -649,7 +531,7 @@ const SignUp = ({ onHomeClick }) => {
               </div>
             </fieldset>
           )}
-
+          {/** Account Details*/}
           {formData.userType && (
             <fieldset className="form-section">
               <legend>Account Details</legend>
@@ -692,7 +574,7 @@ const SignUp = ({ onHomeClick }) => {
               </div>
             </fieldset>
           )}
-
+              {/**Button section */}
           <div className="button-container">
             <button type="submit" className="Signup-btn" disabled={!formData.userType}>Sign Up</button>
             <button type="button" className="back-btn" onClick={handleBackClick}>Back to Home</button>

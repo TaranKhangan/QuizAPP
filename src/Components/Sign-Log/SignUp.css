@@ -37,7 +37,7 @@
   letter-spacing: 0.0625rem;
   text-shadow: 0 0 0.625rem rgba(0, 0, 255, 0.3);
 }
-
+   /*Fieldset styles*/
 .form-section {
   margin-bottom: 1.875rem;
   border: 2px solid rgba(249, 248, 252, 0.92);
@@ -45,20 +45,20 @@
   padding: 1.875rem;
   position: relative;
 }
-
+  /* Fieldset legend styles */
 .form-section legend {
   color: rgb(121, 121, 133);
   font-size: 1.125rem;
   font-weight: 600;
   padding: 0 0.625rem;
 }
-
+  /*for input fields in fieldset*/
 .form-row {
   display: flex;
   gap: 1.25rem;
   flex-wrap: wrap;
 }
-
+  /*for input fields in fieldset*/
 .form-group {
   position: relative;
   margin-bottom: 1.25rem;
@@ -90,7 +90,7 @@
   color: rgba(57, 78, 134, 0.9);
   font-weight: 400;
 }
-
+/*for select dropdowns*/
 .form-group select {
   appearance: none;
   color: rgba(65, 87, 150, 0.9);
@@ -114,7 +114,8 @@
   background: rgba(157, 152, 236, 0.68);
   border-radius: 0.625rem;
 }
-
+/*For radio buttons*/
+/*for selecting the user TYpe*/
 .form-group input[type="radio"] {
   width: auto;
   margin-right: 0.75rem;
@@ -156,6 +157,7 @@
   cursor: pointer;
 }
 
+/*for buttons*/
 .button-container {
   display: flex;
   flex-direction: row;
@@ -193,7 +195,7 @@
   transform: translateY(-0.125rem);
   box-shadow: 0 0.3125rem 0.9375rem rgba(0, 123, 255, 0.4);
 }
-
+/* Signup button hover effect */
 .Signup-btn::before {
   content: '';
   position: absolute;
@@ -230,7 +232,7 @@
   transform: translateY(-0.125rem);
   box-shadow: 0 0.3125rem 0.9375rem rgba(0, 123, 255, 0.4);
 }
-
+/* Back button hover effect */
 .back-btn::before {
   content: '';
   position: absolute;
@@ -273,6 +275,8 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Background animation */
+
 .bg-animation {
   position: fixed;
   background: linear-gradient(35deg, rgba(171, 182, 245, 0.81) 0%, #ffffff 100%, rgba(195, 221, 243, 0.81) 0%);
@@ -291,19 +295,22 @@
   animation: move 25s infinite;
 }
 
-.circle:nth-child(1) { width: 11.25rem; height: 11.25rem; top: 10%; left: 20%; }
-.circle:nth-child(2) { width: 9.375rem; height: 9.375rem; top: 60%; right: 15%; animation-duration: 20s; }
-.circle:nth-child(3) { width: 6.25rem; height: 6.25rem; bottom: 20%; left: 30%; animation-duration: 30s; }
-.circle:nth-child(4) { width: 5.625rem; height: 5.625rem; top: 20%; right: 15%; animation-duration: 22s; }
-.circle:nth-child(5) { width: 6.25rem; height: 6.25rem; bottom: 10%; left: 5%; animation-duration: 28s; }
+.circle:nth-child(1) { width: 180px; height: 180px; top: 10%; left: 20%; }
+.circle:nth-child(2) { width: 150px; height: 150px; top: 60%; right: 15%; animation-duration: 20s; }
+.circle:nth-child(3) { width: 100px; height: 100px; bottom: 20%; left: 30%; animation-duration: 30s; }
+.circle:nth-child(4) { width: 90px; height: 90px; top: 20%; right: 15%; animation-duration: 22s; }
+.circle:nth-child(5) { width: 80px; height: 80px; bottom: 10%; left: 5%; animation-duration: 28s; }
 
 @keyframes move {
   0% { transform: translate(0, 0); }
-  25% { transform: translate(9.375rem, 6.25rem); }
-  50% { transform: translate(6.25rem, 9.375rem); }
-  75% { transform: translate(3.125rem, 6.25rem); }
+  25% { transform: translate(150px, 100px); }
+  50% { transform: translate(100px, 150px); }
+  75% { transform: translate(50px, 100px); }
   100% { transform: translate(0, 0); }
 }
+
+
+/*Responsiveness*/
 
 @media (max-width: 800px) {
   .signup-container {
