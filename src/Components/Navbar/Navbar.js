@@ -7,14 +7,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import refLogo from '../../assets/Logo-Sahash.jpeg';
 
-const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
+const Navbar = ({ onLoginClick, onHomeClick }) => {
+    // State to toggle mobile menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  //ref for mobile navi container
   const mobileNavRef = useRef(null);
+  //ref for mobile navi toggle btn
   const mobileToggleRef = useRef(null);
-  const dropdownRef = useRef(null);
+  //const dropdownRef = useRef(null);
+  //hook for programmatic navi
   const navigate = useNavigate();
 
+  //toggle mobile menu open/close state
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
 //    if (isDropdownOpen) setIsDropdownOpen(false);
@@ -25,19 +30,23 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
     //setIsDropdownOpen(!isDropdownOpen);
   //};
 
+  //to handle smooth scrolling to section
   const handleScroll = (sectionId) => {
+    //if not home page, navigate to '/' first
     if (window.location.pathname !== '/') {
       navigate('/');
+      //delay scroll to allow page load
       setTimeout(() => {
         const section = document.getElementById(sectionId);
         if (section) {
           window.scrollTo({
-            top: section.offsetTop - 64,
+            top: section.offsetTop - 64,// Offset for fixed navbar height
             behavior: 'smooth',
           });
         }
       }, 100);
     } else {
+      //scroll directly if already on home page
       const section = document.getElementById(sectionId);
       if (section) {
         window.scrollTo({
@@ -46,10 +55,13 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
         });
       }
     }
+    //close mobile menu after navigation
     setIsMenuOpen(false);
     //setIsDropdownOpen(false);
   };
 
+  //handle login btn click 
+  //using provided prop and fallback navigation
   const handleLogin = () => {
     if (onLoginClick) {
       onLoginClick();
@@ -59,17 +71,21 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
       navigate('/login');
     }
   };
+  //handle signup btn click, navi to signup 
   const handleSignup = ()=>{
-    if (onSignupClick){
+      navigate('/signup');
+      setIsMenuOpen(false);
+   /* if (onSignupClick){
       onSignupClick();
       setIsMenuOpen(false);
     }
     else{
       console.warn('onSignupClick not provided');
       navigate('/signup');
-    }
+    }*/
   }
 
+  //to home page 
   const handleHome = () => {
     if (onHomeClick) {
       onHomeClick();
@@ -77,6 +93,8 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
     setIsMenuOpen(false);
     navigate('/');
   };
+
+    // Effect to close mobile menu when clicking outside
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -89,31 +107,38 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
         setIsMenuOpen(false);
         //setIsDropdownOpen(false);
       }
-      if (
+     /* if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
         !event.target.closest('.signup-btn')
       ) {
         //setIsDropdownOpen(false);
-      }
+      }*/
     };
     document.addEventListener('click', handleOutsideClick);
+        // Cleanup listener on component unmount
+
     return () => document.removeEventListener('click', handleOutsideClick);
   }, []);
 
+  //effect ot manage mobile menu accessiblility  attribute
   useEffect(() => {
     const mobileNav = mobileNavRef.current;
     const mobileToggle = mobileToggleRef.current;
     if (mobileNav && mobileToggle) {
+            // Update ARIA attributes for accessibility
+
       mobileNav.setAttribute('aria-hidden', !isMenuOpen);
       mobileToggle.setAttribute('aria-expanded', isMenuOpen);
+      //adjust tabIndex for mobile links based on menu state
       const mobileLinks = Array.from(mobileNav.querySelectorAll('a, button'));
+
       mobileLinks.forEach(link => (link.tabIndex = isMenuOpen ? 0 : -1));
     }
   }, [isMenuOpen]);
 
   return (
-    
+    //Nav starts from here
     <nav className="sahash-navbar" role="banner">
       <div className="nav-bar container" role="navigation" aria-label="Main navigation">
         <div className="logo-container">
@@ -125,6 +150,8 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
             </div>
           </Link>
         </div>
+                {/* Mobile menu toggle button */}
+
         <div
           className="menu-icon"
           onClick={toggleMenu}
@@ -136,6 +163,7 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
+        {/**mobile nav links shown when menu is open */}
         <div
           className={`nav-links ${isMenuOpen ? 'active' : ''}`}
           ref={mobileNavRef}
@@ -165,6 +193,8 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
             </li>
            
           </ul>
+                    {/* Mobile navigation buttons */}
+
           <div className="nav-btns nav-btns-mobile">
             <button className="login-btn" onClick={handleLogin} tabIndex={isMenuOpen ? 0 : -1}>
               Login
@@ -184,6 +214,8 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
             </div>
           </div>
         </div>
+
+        {/**desktop nav links */}
         <div className="nav-links desktop-nav-links">
           <ul className="nav-links-list">
             <li>
@@ -219,6 +251,8 @@ const Navbar = ({ onLoginClick, onSignupClick, onHomeClick }) => {
           
           </ul>
         </div>
+                {/* Desktop navigation buttons */}
+
         <div className="nav-btns desktop-nav-btns">
           <button className="login-btn" onClick={handleLogin}>
             Login

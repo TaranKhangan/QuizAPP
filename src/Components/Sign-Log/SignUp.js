@@ -103,16 +103,18 @@ const SignUp = ({ onHomeClick }) => {
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);
-  
+
 // for areas of interest
   useEffect(() => {
     console.log("areasOfInterest:", formData.areasOfInterest);
   }, [formData.areasOfInterest]);
 
+  //to back to home page .. 
   const handleBackClick = () => {
     onHomeClick();
     navigate('/');
   };
+  
 //for institution details
   const handleInputChange = (e) => {
     const { id, value } = e.target;
