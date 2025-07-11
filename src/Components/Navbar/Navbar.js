@@ -10,25 +10,22 @@ import refLogo from '../../assets/Logo-Sahash.jpeg';
 const Navbar = ({ onLoginClick, onHomeClick }) => {
     // State to toggle mobile menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  //const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   //ref for mobile navi container
   const mobileNavRef = useRef(null);
   //ref for mobile navi toggle btn
   const mobileToggleRef = useRef(null);
-  //const dropdownRef = useRef(null);
+ 
   //hook for programmatic navi
   const navigate = useNavigate();
 
   //toggle mobile menu open/close state
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-//    if (isDropdownOpen) setIsDropdownOpen(false);
+
   };
 
-  //const toggleDropdown = (e) => {
-    //e.stopPropagation();
-    //setIsDropdownOpen(!isDropdownOpen);
-  //};
+ 
 
   //to handle smooth scrolling to section
   const handleScroll = (sectionId) => {
@@ -57,7 +54,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
     }
     //close mobile menu after navigation
     setIsMenuOpen(false);
-    //setIsDropdownOpen(false);
+    
   };
 
   //handle login btn click 
@@ -75,14 +72,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
   const handleSignup = ()=>{
       navigate('/signup');
       setIsMenuOpen(false);
-   /* if (onSignupClick){
-      onSignupClick();
-      setIsMenuOpen(false);
-    }
-    else{
-      console.warn('onSignupClick not provided');
-      navigate('/signup');
-    }*/
+   
   }
 
   //to home page 
@@ -107,13 +97,7 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
         setIsMenuOpen(false);
         //setIsDropdownOpen(false);
       }
-     /* if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
-        !event.target.closest('.signup-btn')
-      ) {
-        //setIsDropdownOpen(false);
-      }*/
+   
     };
     document.addEventListener('click', handleOutsideClick);
         // Cleanup listener on component unmount
@@ -199,18 +183,10 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
             <button className="login-btn" onClick={handleLogin} tabIndex={isMenuOpen ? 0 : -1}>
               Login
             </button>
-            <div >{/**className="dropdown" ref={dropdownRef} */}
+            <div >
               <button className="signup-btn" onClick={handleSignup} tabIndex={isMenuOpen ? 0 : -1}>
                 Sign Up
               </button>
-             {/** <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                <Link to="/teacher-signup" onClick={() => { setIsMenuOpen(false); setIsDropdownOpen(false); }}>
-                  Teacher
-                </Link>
-                <Link to="/student-signup" onClick={() => { setIsMenuOpen(false); setIsDropdownOpen(false); }}>
-                  Student
-                </Link>
-              </div>*/}
             </div>
           </div>
         </div>
@@ -257,18 +233,11 @@ const Navbar = ({ onLoginClick, onHomeClick }) => {
           <button className="login-btn" onClick={handleLogin}>
             Login
           </button>
-          <div >{/**className="dropdown" ref={dropdownRef} */}
+          <div >
             <button className="signup-btn" onClick={handleSignup}>
               Sign Up
             </button>
-            {/**<div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-              <Link to="/teacher-signup" onClick={() => setIsDropdownOpen(false)}>
-                Teacher
-              </Link>
-              <Link to="/student-signup" onClick={() => setIsDropdownOpen(false)}>
-                Student
-              </Link>
-            </div>*/}
+            
           </div>
         </div>
       </div>

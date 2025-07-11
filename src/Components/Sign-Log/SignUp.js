@@ -114,12 +114,14 @@ const SignUp = ({ onHomeClick }) => {
     onHomeClick();
     navigate('/');
   };
-  
-//for institution details
+
+  // Handle input changes and reset dependent fields
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => {
       const newFormData = { ...prev, [id]: value };
+      //reset dependent fields with insti type
       if (id === 'institutionType') {
         newFormData.institutionState = '';
         newFormData.institutionDistrict = '';
