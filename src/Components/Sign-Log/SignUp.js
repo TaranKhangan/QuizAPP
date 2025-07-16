@@ -99,7 +99,7 @@ const SignUp = ({ onHomeClick }) => {
       const timer = setTimeout(() => {
         console.log('Hiding success message');
         setShowSuccess(false);
-      }, 4000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showSuccess]);

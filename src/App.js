@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/Sign-Log/Login';
 //import TeacherSignUp from './Components/Sign-Log/TeacherSignUp';
 import SignUp from './Components/Sign-Log/SignUp';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,6 +38,10 @@ const App = () => {
           <Route
             path="/signup"
             element={<SignUp onHomeClick={handleHomeClick} />}
+          />
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
           />
         </Routes>
       </div>

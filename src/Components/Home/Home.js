@@ -1,8 +1,7 @@
 
 
-
-
 import React, { useState } from 'react';
+
 //import './Home.css'; // i am using app.css for this purpose... :).
 
 const Hero = () => (

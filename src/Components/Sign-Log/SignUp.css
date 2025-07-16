@@ -73,7 +73,7 @@
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.9));
   border: 2px solid rgba(251, 251, 252, 0.97);
   border-radius: 1.875rem;
-  color: rgb(41, 59, 87);
+  color: rgba(41, 56, 87, 1);
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -87,13 +87,13 @@
 }
 
 .form-group input::placeholder {
-  color: rgba(57, 78, 134, 0.9);
+  color: rgba(49, 62, 97, 0.9);
   font-weight: 400;
 }
 /*for select dropdowns*/
 .form-group select {
   appearance: none;
-  color: rgba(65, 87, 150, 0.9);
+  color: rgb(41, 59, 87);
   font-weight: 400;
   -webkit-appearance: none;
   -moz-appearance: none;
