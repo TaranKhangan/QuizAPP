@@ -1247,6 +1247,7 @@ footer {
   background: #2f4157;
   padding: clamp(0.75rem, 2vw, 1rem) 0;
   text-align: center;
+  margin-top: 0.2rem;
   font-size: clamp(0.75rem, 2vw, 0.875rem);
   color: #ffffff;
 }

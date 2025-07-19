@@ -91,7 +91,13 @@ const SignUp = ({ onHomeClick }) => {
       password: '',
       confirmPassword: ''
     });
+  
+    // Redirect to dashboard after signup
+    setTimeout(() => navigate('/dashboard'), 3000); // Match success message duration
   };
+
+  
+
 // for success message
   useEffect(() => {
     if (showSuccess) {
