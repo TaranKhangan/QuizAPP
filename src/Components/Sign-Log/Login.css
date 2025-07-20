@@ -410,17 +410,17 @@ rest of the functionality theme will be same .. can u please help ... */
   letter-spacing: 1px;
 }
 
-.welcome-text {
+.welcome-text-l {
   text-align: center;
   padding: 3rem;
 }
 
-.welcome-text h2 {
+.welcome-text-l h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.welcome-text p {
+.welcome-text-l p {
   font-size: 1.2rem;
   margin: 3.5rem;
   margin-bottom: 4rem;
@@ -572,15 +572,15 @@ rest of the functionality theme will be same .. can u please help ... */
     min-width: 280px; 
   }
 
-  .welcome-text {
+  .welcome-text-l {
     padding: 2rem 1rem;
   }
 
-  .welcome-text h2 {
+  .welcome-text-l h2 {
     font-size: 1.8rem;
   }
 
-  .welcome-text p {
+  .welcome-text-l p {
     font-size: 1rem;
     margin: 1rem;
     margin-bottom: 2rem;
@@ -631,11 +631,11 @@ rest of the functionality theme will be same .. can u please help ... */
     padding: 1.5rem;
   }
 
-  .welcome-text h2 {
+  .welcome-text-l h2 {
     font-size: 1.5rem;
   }
 
-  .welcome-text p {
+  .welcome-text-l p {
     font-size: 0.9rem;
     margin: 0.5rem;
     margin-bottom: 1.5rem;
@@ -667,11 +667,11 @@ rest of the functionality theme will be same .. can u please help ... */
     padding: 1.2rem;
   }
 
-  .welcome-text h2 {
+  .welcome-text-l h2 {
     font-size: 1.3rem;
   }
 
-  .welcome-text p {
+  .welcome-text-l p {
     font-size: 0.85rem;
     margin: 0.4rem;
     margin-bottom: 1.2rem;
@@ -712,11 +712,11 @@ rest of the functionality theme will be same .. can u please help ... */
     padding: 1rem;
   }
 
-  .welcome-text h2 {
+  .welcome-text-l h2 {
     font-size: 1.1rem;
   }
 
-  .welcome-text p {
+  .welcome-text-l p {
     font-size: 0.8rem;
     margin: 0.3rem;
     margin-bottom: 1rem;

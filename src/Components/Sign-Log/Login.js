@@ -162,7 +162,7 @@ const Login = () => {
       </div>
       {!showForgotPassword && (
         <div className="right-section">
-          <div className="welcome-text">
+          <div className="welcome-text-l">
             <h2>Welcome Back!!</h2>
             <p>Welcome back!! We are so happy to have you here. It’s great to see you again.</p>
             <button onClick={handleSignupClick} className="s-signup-btn">
