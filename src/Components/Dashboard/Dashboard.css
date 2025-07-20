@@ -364,21 +364,49 @@
   .welcome-container h1 {
     font-size: 1.5rem;
   }
+  
+  
+  .middle-section
+  { margin: 0.6rem;
+    order: 1;
+  }
+  .announcements-section {
+    order: 2;
+    margin: 0 0 1.5rem 0 ;
+    width: 100%;
+  }
+  .feedback-issues-section {
+    order: 3;
+    width: 100%;
+    height: auto;
+  }
+
+  .management-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
 
   .announcements-section h2,
   .feedback-section h3,
   .issues-section h3 {
     font-size: 1.2rem;
   }
-
+  .feedback-section h3,
+  .issues-section h3 {
+    margin: 0.5rem ;
+  }
   .announcement-card h3,
   .management-card h3,
   .feedback-card h4,
   .issue-card h4 {
     font-size: 1rem;
+    font-weight: 600;
+  }
+ .feedback-card ,
+  .issue-card {
+    height: auto;
+    margin: 0.5rem 0;
+    
   }
 
-  .management-card .btn-primary {
-    font-size: 0.9rem;
-  }
 }
