@@ -10,7 +10,7 @@
 /* Main container takes full height and supports layout */
 .dashboard-main {
   flex: 1;
-  padding: 1.5rem;
+  
   background: linear-gradient(135deg, #edf7fd41 0%, #e4f5f5be 50%, #fef3c76e 100%);
   min-height: calc(100vh - 60px); 
 }
@@ -18,9 +18,8 @@
 /* Main content layout with three columns */
 .dashboard-content {
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
   flex-wrap: wrap;
-  
   margin: 0 auto;
 }
 
@@ -29,14 +28,15 @@
   flex: 1;
   background: #306694;
   color: #fff;
-  padding: 1.5rem;
-  margin: 0 1.5rem 0 0;
+  padding: clamp(0.8rem, 2vw, 1.2rem);
+  margin: 0 clamp(0.5rem, 1.5vw, 1rem) 0 0;
   border-radius: 0 1.2rem 1.2rem 0;
+  min-height: 250px;
   box-shadow: 0 4px 10px rgba(110, 114, 119, 0.9);
 }
 
 .announcements-section h2 {
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   margin-bottom: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -51,7 +51,7 @@
 
 .announcement-card {
   background-color: rgba(255, 255, 255, 0.39);
-  padding: 1rem;
+  padding: clamp(0.6rem, 1.5vw, 0.8rem);
   margin: 0.6rem 0;
   border-radius: 8px;
   transition: transform 0.2s;
@@ -63,17 +63,17 @@
 
 .announcement-card h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: 500;
 }
 
 .announcement-card p {
   margin: 0 0 0.5rem;
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
 .announcement-date {
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
   opacity: 0.8;
 }
 .announce-scroll {
@@ -91,16 +91,16 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
 }
 
 .welcome-container {
   display: flex;
   align-items: center;
-  padding: 1.5rem;
+  padding: clamp(0.8rem, 2vw, 1.2rem);
   background-color: #f8fdfdff;
   border-radius: 10px;
-  margin: 1.2rem  0 1.5rem 0;
+  margin: clamp(0.8rem, 2vw, 1.2rem) 0;
   border-left: 5px solid #306694;
   box-shadow: 0 4px 6px rgba(179, 202, 218, 0.91);
 }
@@ -113,21 +113,21 @@
 
 .welcome-text h1 {
   color: #306694;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   font-weight: 600;
   margin: 0;
 }
 
 .cheerful-line {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   color: #4a6b82;
   font-style: italic;
   margin:0.4rem;
 }
 
 .admin-avatar {
-  width: 60px;
-  height: 60px;
+  width: clamp(40px, 10vw, 50px);
+  height: clamp(40px, 10vw, 50px);
   background-color: #fff;
   border-radius: 50%;
   overflow: hidden;
@@ -148,14 +148,16 @@
 .management-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: clamp(0.8rem, 2vw, 1.2rem);;
 }
 
 .management-card {
-  padding: 1.5rem;
+  padding: clamp(0.8rem, 2vw, 1.2rem);;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #fff;
+  min-height: 100px;
+  min-width: 150px;
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s;
@@ -197,52 +199,38 @@
 
 .management-card h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: clamp(0.8rem, 2.2vw, 1rem);
+  font-weight: 600;
 }
 
 .management-card p {
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
+  margin: 0 0 0.8rem;
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
 }
 
-.management-card .btn-primary {
-  background-color: #fff;
-  color: #306694;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.management-card .btn-primary:hover {
-  background-color: #e0e0e0;
-}
 
 /* Right Section: Feedback & Issues */
 /* Glassmorphic Right Section Container */
 .feedback-issues-section {
   flex: 1;
   min-height: 600px;
-  padding: 1.2rem;
+  padding: clamp(0.8rem, 2vw, 1rem);
   border-radius: 14px;
   background: rgba(214, 235, 241, 0.29);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 8px 10px rgba(178, 183, 185, 0.97);
-  border: 1px solid rgba(216, 243, 250, 0.97);
+  border: 1px solid rgba(185, 219, 228, 0.93);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: clamp(0.8rem, 2vw, 1rem);
+  min-width: 250px;
 }
 
 /* Section headers */
 .feedback-section-d h3,
 .issues-section h3 {
-  font-size: 1.15rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: 600;
   margin-bottom: 0.6rem;
   padding: 0.4rem 1rem;
@@ -288,7 +276,7 @@
 
 .feedback-card h4,
 .issue-card h4 {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2.2vw, 0.95rem);;
   font-weight: 600;
   color: #2f4152;
   margin-bottom: 0.3rem;
@@ -296,7 +284,7 @@
 
 .feedback-card p,
 .issue-card p {
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: #475c70;
   margin-bottom: 0.3rem;
   line-height: 1.4;
@@ -304,7 +292,7 @@
 
 .feedback-date,
 .issue-date {
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 1.8vw, 0.75rem);
   color: #6e7e8f;
 }
 
@@ -335,78 +323,214 @@
 
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 875px) {
   .dashboard-content {
     flex-direction: column;
-    gap: 1rem;
+    gap: clamp(0.6rem, 1.5vw, 0.8rem);
+    margin: 0 auto;
+    padding: clamp(0.6rem, 1.5vw, 0.8rem);
   }
 
   .announcements-section,
   .middle-section,
   .feedback-issues-section {
     flex: none;
+    width: 100%;
+    margin-bottom: clamp(0.6rem, 1.5vw, 0.8rem);
+    
   }
-
+  .middle-section {
+    order: 1;
+    margin: -1rem 0 0 0;
+  }
+  .announcements-section {
+    order: 2;
+    margin: 0.4rem 0;
+    padding: clamp(0.6rem, 1.5vw, 0.8rem);
+  }
+  .feedback-issues-section {
+    order: 3;
+    min-height: auto;
+  }
+    
   .management-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: clamp(0.6rem, 1.5vw, 0.8rem);
+  }
+  
+  .announce-scroll {
+    max-height: 450px;
   }
 
   .feedback-scroll {
-    max-height: 200px;
+    max-height: 120px;
   }
 }
 
 @media (max-width: 600px) {
   .dashboard-main {
-    padding: 1rem;
+    padding: clamp(0.5rem, 1.2vw, 0.6rem);
   }
 
-  .welcome-container h1 {
-    font-size: 1.5rem;
+  .welcome-container {
+    margin: 0.4rem 0;
+    padding: clamp(0.5rem, 1.2vw, 0.6rem);
+
   }
-  
-  
-  .middle-section
-  { margin: 0.6rem;
+
+  .welcome-text h1 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    text-wrap: wrap;
+  }
+
+  .cheerful-line {
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  }
+
+  .admin-avatar {
+    width: clamp(32px, 8vw, 36px);
+    height: clamp(32px, 8vw, 36px);
+    margin-left: clamp(0.5rem, 1.2vw, 0.6rem);
+  }
+
+  .middle-section {
     order: 1;
+    margin: 0;
   }
+
   .announcements-section {
     order: 2;
-    margin: 0 0 1.5rem 0 ;
-    width: 100%;
+    margin: 0.4rem 0;
+    padding: clamp(0.5rem, 1.2vw, 0.6rem);
   }
+
   .feedback-issues-section {
     order: 3;
-    width: 100%;
-    height: auto;
+    min-height: auto;
+    padding: clamp(0.5rem, 1.2vw, 0.6rem);
+    margin: 0.4rem 0;
   }
 
   .management-grid {
     grid-template-columns: repeat(2, 1fr);
-    padding: 1rem;
+    gap: 1rem;
   }
 
-  .announcements-section h2,
-  .feedback-section h3,
-  .issues-section h3 {
-    font-size: 1.2rem;
-  }
-  .feedback-section h3,
-  .issues-section h3 {
-    margin: 0.5rem ;
-  }
-  .announcement-card h3,
-  .management-card h3,
-  .feedback-card h4,
-  .issue-card h4 {
-    font-size: 1rem;
-    font-weight: 600;
-  }
- .feedback-card ,
-  .issue-card {
-    height: auto;
-    margin: 0.5rem 0;
+  .management-card {
+    padding: clamp(0.5rem, 1.2vw, 0.6rem);
     
   }
 
+  .management-card h3 {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+  }
+
+  .management-card p {
+    font-size: clamp(0.79rem, 1.8vw, 0.8rem);
+  }
+
+  .announcements-section h2,
+  .feedback-section-d h3,
+  .issues-section h3 {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    padding: 0.3rem 0.5rem;
+  }
+
+  .feedback-section-d h3,
+  .issues-section h3 {
+    margin: 0.3rem 0;
+  }
+
+  .announcement-card,
+  .feedback-card,
+  .issue-card {
+    margin: 0.3rem 0;
+    padding: clamp(0.4rem, 1vw, 0.5rem);
+  }
+
+  .announcement-card h3,
+  .feedback-card h4,
+  .issue-card h4 {
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+  }
+
+  .announce-scroll,
+  .feedback-scroll {
+    max-height: 200px;
+  }
+
+  .feedback-card,
+  .issue-card {
+    height: 80px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dashboard-main {
+    padding: clamp(0.55rem, 1vw, 0.5rem);
+  }
+
+  .dashboard-content {
+    gap: clamp(0.5rem, 1vw, 0.5rem);
+  }
+
+  .welcome-container {
+    flex-direction: row;
+    align-items: center;
+    padding: clamp(0.4rem, 1vw, 0.5rem);
+    margin: 0.3rem 0;
+    flex-wrap: wrap;
+  }
+
+  .admin-avatar {
+    width: clamp(28px, 7vw, 32px);
+    height: clamp(28px, 7vw, 32px);
+    padding: 0.25rem;
+    margin: 0.3rem 0;
+  }
+  .admin-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+  }
+
+  .management-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.69rem, 1vw, 0.5rem);
+  }
+
+  .management-card {
+    padding: clamp(0.4rem, 1vw, 0.5rem);
+  }
+
+  .announcements-section {
+    
+    margin: 0.3rem 0;
+  }
+  
+  .announcement-card {
+    padding: clamp(0.5rem, 1vw, 0.5rem);
+    margin: 1rem 0;
+    height: auto;
+  }
+
+  .feedback-issues-section {
+    padding: clamp(0.4rem, 1vw, 0.5rem);
+    margin: 0.3rem 0;
+  }
+
+  .feedback-card,
+  .issue-card {
+    padding: clamp(0.3rem, 0.8vw, 0.4rem);
+    height: 70px;
+    margin: 0.5rem 0;
+  }
+
+  .announce-scroll,
+  .feedback-scroll {
+    max-height: 140px;
+    
+  }
 }
