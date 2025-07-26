@@ -7,6 +7,7 @@ import Login from './Components/Sign-Log/Login';
 import Footer from './Components/Home/footer';
 import SignUp from './Components/Sign-Log/SignUp';
 import Dashboard from './Components/Dashboard/Dashboard';
+import TestDetails from './Components/Dashboard/Test-details';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -18,6 +19,7 @@ const App = () => {
   const handleHomeClick = () => {
     setShowLogin(false);
   };
+
 
   return (
     <BrowserRouter>
@@ -36,7 +38,12 @@ const App = () => {
             path="/dashboard"
             element={<Dashboard />}
           />
+           <Route
+          path="/test-details"
+          element={<TestDetails />}
+        />
         </Routes>
+       
         <Footer />
       </div>
     </BrowserRouter>

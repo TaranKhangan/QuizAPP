@@ -1,12 +1,12 @@
 import React from 'react';
 import userPic from '../../assets/user-icon.jpg';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 // Dashboard component for admin interface with announcements, management panels, and feedback/issues
 const Dashboard = () => {
   // Hook for navigation (for future use, e.g., management panel actions)
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Placeholder data for announcements
   const announcements = [
@@ -33,7 +33,7 @@ const Dashboard = () => {
     { id: 2, title: 'Quiz Loading', description: 'Quiz page loads slowly on mobile.', status: 'In Progress', date: '2025-07-14' },
   ];
 
-  // Placeholder data for management panels (color removed, handled in CSS)
+  // Placeholder data for management panels (color  handled in CSS)
   const managementPanels = [
     { id: 1, title: 'Manage Users', description: 'View and manage user accounts and permissions.' },
     { id: 2, title: 'Manage Tests', description: 'Create, edit, or delete quizzes and tests.' },
@@ -44,7 +44,10 @@ const Dashboard = () => {
   // Handle button clicks for management panels (placeholder for navigation)
   const handleActionClick = (title) => {
     console.log(`${title} clicked!`);
-    // Future: Add navigation, e.g., navigate('/manage-users')
+    if(title === 'Manage Tests'){
+      navigate('/test-details');
+    }
+    // Future: Add more  navigation, e.g., navigate('/manage-users')
   };
 
   return (
