@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Test-details.css';
 
 const TestDetails = () => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
+  // Handle clicks outside the filter dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isFilterOpen &&
+        filterRef.current &&
+        !filterRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFilterOpen]);
+
   // Sample array of test data (can be replaced with API data or props)
   const tests = [
     {
@@ -28,14 +56,12 @@ const TestDetails = () => {
       language: 'English',
       publishDate: '2025-07-10',
     },
-    //add more test objects as needed
-    
   ];
 
   return (
     <div className="test-details-page">
-      {/* Filter Section */}
-      <div className="filter-section">
+      {/* Filter Section - Sidebar on desktop, dropdown on mobile */}
+      <div className={`filter-section ${isFilterOpen ? 'filter-section--open' : ''}`} ref={filterRef}>
         <h2>Filter By</h2>
         <hr />
         <div className="filter-group">
@@ -91,10 +117,16 @@ const TestDetails = () => {
           </select>
         </div>
       </div>
-
       {/* Test Details Section */}
       <div className="test-details-section">
-        <h1>Test Details</h1>
+        <div className="test-details-header">
+          <h1>Test Details</h1>
+          <div className="filter-toggle-wrapper">
+            <button className="filter-toggle-button" onClick={toggleFilter} ref={buttonRef}>
+              {isFilterOpen ? 'Hide Filters' : 'Filter By'}
+            </button>
+          </div>
+        </div>
         <div className="test-container-row">
           {tests.map((test) => (
             <div key={test.id} className="test-card">

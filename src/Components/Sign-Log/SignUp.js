@@ -480,7 +480,7 @@ const SignUp = ({ onHomeClick }) => {
                     <input
                       type="text"
                       id="customCoachingName"
-                      placeholder=" "
+                      placeholder="Coaching Center Name"
                       value={formData.customCoachingName}
                       onChange={handleInputChange}
                     />
