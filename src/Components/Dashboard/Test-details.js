@@ -85,7 +85,7 @@ const TestDetails = () => {
   const handleActionClick = (testId) => {
     console.log(`${testId} clicked!`);
     
-      navigate(`/full-test-details/${testId}`);
+      navigate(`/FullTest-details/${testId}`);
     };
 
   return (

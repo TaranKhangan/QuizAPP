@@ -70,11 +70,11 @@ const FullTestDetails = () => {
             </div>
             <div className="form-group">
               <label htmlFor="testCategory">Test Category</label>
-              <input type="text" id="testCategory" value={test.category} readOnly />
+              <input type="radio" id="testCategory" value={test.category} readOnly />
             </div>
             <div className="form-group">
               <label htmlFor="testVisibility">Test Visibility</label>
-              <input type="text" id="testVisibility" value={test.visibility} readOnly />
+              <input type="radio" id="testVisibility" value={test.visibility} readOnly />
             </div>
             <div className="form-group">
               <label htmlFor="creatorName">Creator Name</label>
@@ -137,3 +137,67 @@ const FullTestDetails = () => {
 };
 
 export default FullTestDetails;*/
+/*
+this is the fulltestdetails page.. the top of this page will have a container for heading or being honest for two texts.. on the left side it should be test name(dynamic) and on the right side of this container there should be text having details text status : live(will be dynamic) and this container should be sticky ; it should be sticky and don't scroll with the page's content...
+  here on the left side i want a button sections where 5 buttons are present (preview button, download certificate button, approve test, reject test and delete test)  .. And i want this section to be sticky .. at its position.. its should not scroll with page.. i repeat whatever happens it should be sticky at its place and responsiveness should be considered too.. use clamp if needed sometimes..  
+THen in the middle or u can say main side where the actual content will be it should be more like a form .. and i want to clear one thing this should not effect the other forms of my different pages... so make sure these doesn't disturb others..   then at the end of this section there should be two buttons save and cancel..   bhai js and css files alag bnana .. aur html file alag mat krna */
+import React from 'react';
+import './FullTest-details.css';
+
+const FullTestDetails = ({ testName = 'Sample Test', status = 'Live' }) => {
+  return (
+    <div className="full-test-details-container">
+      {/* Sticky Header */}
+      <header className="sticky-header">
+        <div className="header-content">
+          <h1 className="test-name">{testName}</h1>
+          <span className="test-status">Status: {status}</span>
+        </div>
+      </header>
+
+      <div className="main-content-wrapper">
+        {/* Sticky Button Section */}
+        <aside className="sticky-buttons">
+          <button className="action-button">Preview</button>
+          <button className="action-button">Download Certificate</button>
+          <button className="action-button">Approve Test</button>
+          <button className="action-button">Reject Test</button>
+          <button className="action-button">Delete Test</button>
+        </aside>
+
+        {/* Main Form Content */}
+        <main className="form-content">
+          <form>
+            <div className="form-group">
+              <label htmlFor="testTitle">Test Title</label>
+              <input type="text" id="testTitle" placeholder="Enter test title" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="testDescription">Description</label>
+              <textarea id="testDescription" placeholder="Enter test description"></textarea>
+            </div>
+            <div className="form-group">
+              <label htmlFor="testDuration">Duration (minutes)</label>
+              <input type="number" id="testDuration" placeholder="Enter duration" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="testCategory">Category</label>
+              <select id="testCategory">
+                <option value="">Select category</option>
+                <option value="technical">Technical</option>
+                <option value="aptitude">Aptitude</option>
+                <option value="coding">Coding</option>
+              </select>
+            </div>
+            <div className="form-actions">
+              <button type="button" className="save-button">Save</button>
+              <button type="button" className="cancel-button">Cancel</button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default FullTestDetails;
