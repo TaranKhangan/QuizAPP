@@ -1,0 +1,217 @@
+.full-test-details{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+/* FullTestDetails.css */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.full-test-details {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Header section */
+.test-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.test-name {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: #1a3c34;
+}
+
+.test-status {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: #1a3c34;
+}
+
+.test-status strong {
+  color: #28a745;
+  font-weight: 700;
+}
+
+/* Content wrapper for sidebar and form */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Buttons container (sidebar) */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.preview {
+  background-color: #007bff;
+  color: white;
+}
+
+.preview:hover {
+  background-color: #0056b3;
+}
+
+.download {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.download:hover {
+  background-color: #117a8b;
+}
+
+.approve {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve:hover {
+  background-color: #1e7e34;
+}
+
+.reject {
+  background-color: #dc3545;
+  color: white;
+}
+
+.reject:hover {
+  background-color: #a71d2a;
+}
+
+.delete {
+  background-color: #6c757d;
+  color: white;
+}
+
+.delete:hover {
+  background-color: #545b62;
+}
+
+/* Test details form */
+.test-details-content {
+  flex: 1;
+  background-color: #ffffff;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test-details-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-group label {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  background-color: #f8f9fa;
+  cursor: not-allowed; /* For readOnly inputs */
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Save and Cancel buttons */
+.btns-container {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #1e7e34;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #545b62;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .content-wrapper {
+    flex-direction: row;
+  }
+
+  .buttons-container {
+    width: 250px;
+  }
+
+  .test-details-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .test-details-form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

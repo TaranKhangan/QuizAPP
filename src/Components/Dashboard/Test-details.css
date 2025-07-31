@@ -3,6 +3,7 @@
   flex-direction: row;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
+  
 }
 
 .filter-section {
@@ -14,14 +15,18 @@
   border-right: 1px solid #d4f8f8d7;
   box-shadow: 0 4px 8px rgba(202, 239, 253, 0.87);
   transition: all 0.3s ease;
-  overflow-y: auto;
-  max-height: 100vh;
+  height: 100vh;
+  top: 0;
+  position: sticky;
+  
+  
 }
 
 .filter-section h2 {
   font-size: clamp(1.2em, 3vw, 1.5em);
   margin-bottom: clamp(12px, 1.5vw, 15px);
   font-weight: 600;
+  
   text-align: center;
   color: #306694;
 }
@@ -36,6 +41,7 @@
 
 .filter-group {
   margin-bottom: clamp(12px, 1.5vw, 15px);
+  
 }
 
 .filter-group label {
@@ -66,7 +72,8 @@
   flex-grow: 1;
   padding: clamp(15px, 3vw, 20px);
   text-align: center;
-  overflow-y: auto;
+  
+  min-height: 100vh; 
 }
 
 .test-details-header {
@@ -74,8 +81,12 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: sticky;
+  top: calc(3.5rem + 10px);
+  z-index: 30;
   gap: clamp(10px, 2vw, 15px);
   margin-bottom: clamp(10px, 2vw, 15px);
+  
 }
 
 .test-details-section h1 {
@@ -137,6 +148,7 @@
   width: clamp(250px, 25vw, 300px);
   box-shadow: 0 4px 6px rgba(184, 196, 199, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10; /* Lower than sticky elements */
 }
 
 .test-card:hover {
@@ -200,31 +212,35 @@
   .filter-section {
     display: none;
     position: absolute;
-    top: calc(18% + 10px); /* Position directly below the filter-toggle-button */
-    right: clamp(12px, 2vw, 15px); 
+    top: calc(18% + 10px);
+    right: clamp(12px, 2vw, 15px);
     width: clamp(200px, 50vw, 280px);
-    max-height: 50vh; 
+    max-height: 50vh;
     background-color: #8ec4c5e0;
     border: 1px solid #d4f8f8d7;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: clamp(10px, 1.5vw, 12px);
-    z-index: 1000;
-    overflow-y: auto;
+    
   }
-.filter-section h2 {
+
+  .filter-section h2 {
     font-size: clamp(1.1em, 3vw, 1.3em);
     text-align: left;
     font-weight: 600;
     color: #306694;
   }
-  .filter-group label{
+
+  .filter-group label {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     color: #2f415a;
     font-weight: 600;
   }
+
   .filter-section--open {
     display: block;
+    
+    
   }
 
   .filter-toggle-button {
@@ -233,6 +249,7 @@
 
   .filter-toggle-wrapper {
     position: relative;
+    
   }
 
   .test-container-row {
@@ -244,18 +261,22 @@
   .test-card {
     width: clamp(250px, 45vw, 300px);
     max-width: 100%;
+    
   }
 
   .test-details-section {
     padding: clamp(12px, 2vw, 15px);
-    position: relative; /* For positioning filter dropdown */
+    position: relative;
   }
 
   .test-details-header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: calc(3.5rem + 10px);
   }
+  
 }
 
 @media (max-width: 480px) {

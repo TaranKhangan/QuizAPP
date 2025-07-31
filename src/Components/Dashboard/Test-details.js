@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Test-details.css';
+import { useNavigate } from 'react-router-dom';
 
 const TestDetails = () => {
+  // Hook for navigation
+  const navigate = useNavigate();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const filterRef = useRef(null);
   const buttonRef = useRef(null);
@@ -39,6 +42,27 @@ const TestDetails = () => {
       pricing: 'Free',
       language: 'English',
       publishDate: '2025-07-20',
+    },{
+      id: 1,
+      quizName: 'Algebra Basics',
+      visibility: 'Public',
+      pricing: 'Free',
+      language: 'English',
+      publishDate: '2025-07-20',
+    },{
+      id: 1,
+      quizName: 'Algebra Basics',
+      visibility: 'Public',
+      pricing: 'Free',
+      language: 'English',
+      publishDate: '2025-07-20',
+    },{
+      id: 1,
+      quizName: 'Algebra Basics',
+      visibility: 'Public',
+      pricing: 'Free',
+      language: 'English',
+      publishDate: '2025-07-20',
     },
     {
       id: 2,
@@ -56,7 +80,13 @@ const TestDetails = () => {
       language: 'English',
       publishDate: '2025-07-10',
     },
+    
   ];
+  const handleActionClick = (testId) => {
+    console.log(`${testId} clicked!`);
+    
+      navigate(`/full-test-details/${testId}`);
+    };
 
   return (
     <div className="test-details-page">
@@ -136,7 +166,7 @@ const TestDetails = () => {
               <p><strong>Pricing:</strong> {test.pricing}</p>
               <p><strong>Language:</strong> {test.language}</p>
               <p><strong>Publish Date:</strong> {test.publishDate}</p>
-              <button className="details-button">Details</button>
+              <button className="details-button" onClick={()=> handleActionClick(test.id)}>Details</button>
             </div>
           ))}
         </div>

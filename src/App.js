@@ -8,6 +8,7 @@ import Footer from './Components/Home/footer';
 import SignUp from './Components/Sign-Log/SignUp';
 import Dashboard from './Components/Dashboard/Dashboard';
 import TestDetails from './Components/Dashboard/Test-details';
+import FullTestDetails from './Components/Dashboard/FullTest-details';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -42,6 +43,10 @@ const App = () => {
           path="/test-details"
           element={<TestDetails />}
         />
+          <Route
+            path="/full-test-details" element={<FullTestDetails />}
+          />
+        
         </Routes>
        
         <Footer />
