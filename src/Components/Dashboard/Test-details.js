@@ -49,21 +49,8 @@ const TestDetails = () => {
       pricing: 'Free',
       language: 'English',
       publishDate: '2025-07-20',
-    },{
-      id: 1,
-      quizName: 'Algebra Basics',
-      visibility: 'Public',
-      pricing: 'Free',
-      language: 'English',
-      publishDate: '2025-07-20',
-    },{
-      id: 1,
-      quizName: 'Algebra Basics',
-      visibility: 'Public',
-      pricing: 'Free',
-      language: 'English',
-      publishDate: '2025-07-20',
     },
+    
     {
       id: 2,
       quizName: 'World History',
@@ -91,6 +78,7 @@ const TestDetails = () => {
   return (
     <div className="test-details-page">
       {/* Filter Section - Sidebar on desktop, dropdown on mobile */}
+     <div className='Sticky-filterby'>
       <div className={`filter-section ${isFilterOpen ? 'filter-section--open' : ''}`} ref={filterRef}>
         <h2>Filter By</h2>
         <hr />
@@ -146,7 +134,10 @@ const TestDetails = () => {
             <option value="paid">Paid</option>
           </select>
         </div>
+        
       </div>
+     
+    </div> 
       {/* Test Details Section */}
       <div className="test-details-section">
         <div className="test-details-header">

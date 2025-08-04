@@ -9,21 +9,23 @@
 .filter-section {
   width: clamp(220px, 22vw, 280px);
   min-width: 220px;
-  flex-shrink: 0;
+  flex-shrink: 0; 
   padding: clamp(15px, 2vw, 20px);
   background-color: #87c7c95b;
   border-right: 1px solid #d4f8f8d7;
   box-shadow: 0 4px 8px rgba(202, 239, 253, 0.87);
   transition: all 0.3s ease;
-  height: 100vh;
-  top: 0;
+  height: calc(100vh-3rem);
+  /*yeh thi mistake ab jo filter by hai uski height fix rahegi... then sort hai*/
   position: sticky;
+  top: 3rem;/*calc(3rem + 10px);*/
+  z-index: 30;
   
   
 }
 
 .filter-section h2 {
-  font-size: clamp(1.2em, 3vw, 1.5em);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: clamp(12px, 1.5vw, 15px);
   font-weight: 600;
   
@@ -49,7 +51,7 @@
   margin-bottom: 4px;
   font-weight: 500;
   color: #2f415a;
-  font-size: clamp(0.9em, 1.5vw, 1em);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .filter-group select {
@@ -90,7 +92,7 @@
 }
 
 .test-details-section h1 {
-  font-size: clamp(1.5em, 4vw, 2em);
+  font-size: clamp(1.5rem, 4vw, 2rem);
   padding: clamp(10px, 2vw, 15px);
   border-radius: 10px 20px 10px 20px;
   border-left: 5px solid #a8cdd8;
@@ -98,7 +100,8 @@
   border-top: 1px solid #a8cdd8;
   font-weight: 700;
   color: #306694;
-  background-color: #f0fbfc;
+  background-color: #f0fbfc94;
+  backdrop-filter: blur(12px);
   flex: 1;
   text-align: center;
 }
@@ -139,7 +142,8 @@
 }
 
 .test-card {
-  background: linear-gradient(135deg, #acd9dde8, #c1e9e9e3);
+  background: linear-gradient(135deg, #acd9dd86, #c1e9e962);
+  backdrop-filter: blur(12px);
   border: 1px solid #559aaf5d;
   border-left: 3px solid #559aafa4;
   border-bottom: 4px solid #559aafa1;
@@ -192,7 +196,15 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
-
+@media(max-width: 1400px){
+  .test-card{
+    min-width: 300px;
+  }
+  .filter-section{
+    width: 300px;
+  }
+   
+}
 @media (max-width: 1024px) {
   .filter-section {
     width: clamp(200px, 20vw, 240px);
@@ -211,11 +223,13 @@
 
   .filter-section {
     display: none;
-    position: absolute;
-    top: calc(18% + 10px);
+    position: fixed;
+    top: calc(20% + 10px);
     right: clamp(12px, 2vw, 15px);
     width: clamp(200px, 50vw, 280px);
     max-height: 50vh;
+    overflow-y: auto;
+    z-index: 40;
     background-color: #8ec4c5e0;
     border: 1px solid #d4f8f8d7;
     border-radius: 10px;
@@ -223,7 +237,25 @@
     padding: clamp(10px, 1.5vw, 12px);
     
   }
+     /* Custom Scrollbar Styling */
+  .filter-section::-webkit-scrollbar {
+    width: 8px; /* Slim scrollbar */
+  }
 
+  .filter-section::-webkit-scrollbar-track {
+    background: #f0fbfc; /* Match select background */
+    border-radius: 10px;
+    margin: 5px 0; /* Prevent clipping at edges */
+  }
+
+  .filter-section::-webkit-scrollbar-thumb {
+    background: #42678894; 
+    border-radius: 10px;
+  }
+
+  .filter-section::-webkit-scrollbar-thumb:hover {
+    background: #6fa1cfda; 
+  }
   .filter-section h2 {
     font-size: clamp(1.1em, 3vw, 1.3em);
     text-align: left;
@@ -283,6 +315,7 @@
   .filter-section {
     width: clamp(180px, 80vw, 260px);
     right: clamp(8px, 2vw, 10px);
+    top: calc(18% + 10px);
   }
 
   .filter-section h2 {
