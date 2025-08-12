@@ -1,0 +1,178 @@
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  font-size: 0.95rem;
+  background: #f0fbfc86;
+  backdrop-filter: blur(12px);
+  padding: clamp(15px, 3vw, 20px);
+  
+}
+
+.inst-header {
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 2.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 30;
+  
+  margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.inst-header h1 {
+  box-shadow: 0 3px 5px #a8cdd8;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  padding: clamp(10px, 2vw, 15px);
+  border-radius: 10px 20px 10px 20px;
+  border-left: 5px solid #a8cdd8;
+  border-bottom: 2px solid #a8cdd8;
+  border-top: 1px solid #a8cdd8;
+  font-weight: 700;
+  color: #306694;
+  background-color: #f0fbfc94;
+  backdrop-filter: blur(12px);
+  flex: 1;
+  text-align: center;
+}
+
+.inst-body {
+  background: linear-gradient(135deg, #acd9dd86, #c1e9e962);
+  border: 1px solid #559aaf5d;
+  border-left: 3px solid #559aafa4;
+  border-bottom: 4px solid #559aafa1;
+  border-radius: 30px 0px 30px 0px;
+  padding: clamp(15px, 2vw, 20px);
+  width: clamp(300px, 50vw, 600px);
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(184, 196, 199, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inst-body:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.inst-body li {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: #253d5f;
+  margin: clamp(8px, 1vw, 10px) 0;
+  line-height: 1.5;
+}
+
+.lang-selection {
+  margin: clamp(15px, 2vw, 20px) auto;
+  width: clamp(300px, 50vw, 600px);
+  text-align: center;
+}
+
+.lang-selection h4 {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 600;
+  color: #306694;
+  margin-bottom: clamp(8px, 1vw, 10px);
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 2vw, 20px);
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+  color: #2f415a;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #306694;
+}
+
+.radio-group input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.start-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(15px, 2vw, 20px);
+}
+
+.start-button {
+  padding: clamp(0.8rem, 1vw, 0.9rem) clamp(1rem, 2vw, 1.8rem);
+  min-width: 150px;
+  background-color: #306694;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.start-button:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+.start-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .inst-body {
+    width: clamp(250px, 80vw, 400px);
+  }
+
+  .lang-selection {
+    width: clamp(250px, 80vw, 400px);
+  }
+
+  .inst-header h1 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  .start-button {
+    min-width: 120px;
+    padding: clamp(0.7rem, 2vw, 0.8rem) clamp(0.8rem, 2vw, 1.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .inst-body {
+    width: clamp(200px, 90vw, 300px);
+  }
+
+  .lang-selection {
+    margin: 1rem;
+    text-align: left;
+    width: clamp(200px, 90vw, 300px);
+    
+  }
+
+  .radio-group {
+    
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .start-button {
+    min-width: 100px;
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
+  }
+}
