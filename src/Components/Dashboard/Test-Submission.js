@@ -227,7 +227,7 @@ instructions before submission
       {/**Main quiz content section  */}
       <div className="test-submission-section">
         <div className="test-submission-header">
-          <h1>Test Name</h1>
+          <h1>Quiz Name</h1>
         </div>
         {/* Mobile-specific information and controls */}
         <div className="mobile-info-section">
@@ -333,5 +333,6 @@ instructions before submission
     </div>
   );
 }
+
 
 export default TestDetails;
