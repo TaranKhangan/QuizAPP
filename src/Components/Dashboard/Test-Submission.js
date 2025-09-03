@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Test-Submission.css';
+import counter from '../Pictures/chronometer.png';
+import score from '../Pictures/achievement.png';
+import answered from '../Pictures/answer.png';
+import unanswered from '../Pictures/question.png';
+import correct from '../Pictures/check.png';
+import incorrect from '../Pictures/no.png';
+
 
 //TestDetails component: Manages a quiz interface with answers , submission, and result display.
 function TestDetails() {
@@ -27,37 +34,46 @@ function TestDetails() {
       question: "What is the full form of RAM?",
       options: ["Random Access Memory", "Read Reccess Memory", "Read and Write Access Memory", "Read Access Manager"],
       answer: "Random Access Memory",
+      description: "RAM stands for Random Access Memory."
     },
     {
       id: 2,
       question: "What is the full form of CPU?",
       options: ["Central Processing Unit", "Control Processing Unit", "Central Programming Unit", "Central Protocol unit"],
       answer: "Central Processing Unit",
+      description: "CPU stands for Central Processing Unit."
+    },
+    {
+      id: 2,
+      question: "What is the full form of CPU?",
+      options: ["Central Processing Unit", "Control Processing Unit", "Central Programming Unit", "Central Protocol unit"],
+      answer: "Central Processing Unit",
+      description: "CPU stands for Central Processing Unit."
     },
     {
       id: 3,
       question: "What is the full form of GPU?",
       options: ["Graphics Processing Unit", "Graphical Processing Unit", "Graphical Programming Unit", "Graphics Putting unit"],
       answer: "Graphics Processing Unit",
+      description: "GPU stands for Graphics Processing Unit."
     },
     {
       id: 4,
       question: "What is the full form of PSU?",
       options: ["Power Solution Unit", "Power Supply Unit", "Process Supply Unit", "Power Scheduling Unit"],
       answer: "Power Supply Unit",
+      description: "PSU stands for Power Supply Unit."
     },
     {
       id: 5,
       question: "What is the full form of FTP?",
       options: ["File Transmission Protocol", "File Transfer Process", "File Transfer Protocol", "File Transaction Protocol"],
       answer: "File Transfer Protocol",
+      description: "FTP stands for File Transfer Protocol."
     }
   ];
 
   //Toggle functions to open and close info and details sections and details sections
-  function toggleInfo() {
-    setIsInfoOpen(!isInfoOpen);
-  }
 
   function toggleDetails() {
     setIsDetailsOpen(!isDetailsOpen);
@@ -178,23 +194,48 @@ function TestDetails() {
       <div className="Sticky-Info">
         <div className={`Info-section ${isInfoOpen ? 'Info-section--open' : ''} ${isSubmitted ? 'Info-section--submitted' : ''}`} ref={infoRef}>
           <h2>Information</h2>
-          <hr />
+          <hr></hr>
           <div className="Info-group">
             {isSubmitted ? (
               <>
               {/**Display quiz result after submisssion */}
-                <h4>Time Taken:</h4>
+              <hr />
+              <div className='pack-h4-p'>
+                <h4>
+                  <img src={counter} alt="counter Icon" className="icon" />
+                  Time Taken: </h4>
+                </div>
                 <p>{formatTime(timeTaken)}</p>
-                <h4>Score:</h4>
+                <hr></hr>
+              <div className='pack-h4-p'>
+                <h4> <img src={score} alt='score' className='icon'></img>
+                Score:</h4>
+              </div>
                 <p>{results.score} / {quizCards.length}</p>
-                <h4>Answered Questions:</h4>
+              
+              <hr />
+              <div className='pack-h4-p'>
+                <h4>
+                  <img src={answered} alt="answer Icon" className="icon" />  Answered Questions:</h4>
+                </div>
                 <p>{results.answered}</p>
-                <h4>Unanswered Questions:</h4>
+                <hr />
+                <div className='pack-h4-p'>
+                <h4> <img src={unanswered} alt="unanswered Icon" className="icon" />  Unanswered Questions:</h4>
+                </div>
                 <p>{results.unanswered}</p>
-                <h4>Correct Questions:</h4>
+                <hr />
+                <div className='pack-h4-p'>
+                <h4>
+                  <img src={correct} alt="correct Icon" className="icon" />  Correct Questions:</h4>
+                  </div>
                 <p>{results.correct}</p>
-                <h4>Incorrect Questions:</h4>
+              
+                <hr />
+                <div className='pack-h4-p'>
+                <h4><img src={incorrect} alt="incorrect Icon" className="icon" />  Incorrect Questions:</h4></div>
                 <p>{results.incorrect}</p>
+                
                 <hr />
                 <div className="submit-button-container">
                   <button onClick={handleDownloadCertificate}>Download Certificate</button>
@@ -206,10 +247,14 @@ function TestDetails() {
               {/**Display 
 instructions before submission
               */}
-                <h4>Time Left:</h4>
+                <h4>
+                  <img src={counter} alt="counter Icon" className="icon" />  Time Left:</h4>
                 <p>{formatTime(timeLeft)}</p>
-                <h4>Number of Questions</h4>
+                
+                <h4><img src={unanswered} alt="question Icon" className="icon" />  Number of Questions: </h4>
                 <p>{quizCards.length}</p>
+                
+
                 <hr />
                 <h4>Don't refresh The page</h4>
                 <h4>Don't close the page</h4>
@@ -234,11 +279,15 @@ instructions before submission
           {!isSubmitted ? (
             <>
               <div className="mobile-info-left">
-                <h4>Time Left: 00:00:00</h4>
-                <h4>No. of Questions: 20</h4>
+                 <h4> <img src={counter} alt='time-Icon' className='icon'></img> Time Left:  
+                 {formatTime(timeLeft)}
+                 </h4>
+                 <h4> <img src={unanswered} alt='questions' className='icon'></img> No. of Questions: {quizCards.length}</h4>
               </div>
               <div className="mobile-info-right">
-                <button className="instructions-toggle" onClick={toggleInfo} ref={buttonRef}>
+                 <p>Don't refresh The page</p>
+                <p>Don't close the page</p>
+               {/**<button className="instructions-toggle" onClick={toggleInfo} ref={buttonRef}>
                   Instructions
                 </button>
                 {isInfoOpen && (
@@ -246,27 +295,27 @@ instructions before submission
                     <p>Don't refresh the page</p>
                     <p>Don't close the page</p>
                   </div>
-                )}
+                )}**/}
               </div>
             </>
           ) : (
             <div className="mobile-info-right">
               <button className="details-toggle" onClick={toggleDetails} ref={detailsButtonRef}>
-                Student Quiz Details
+                 Quiz Details
               </button>
               {isDetailsOpen && (
                 <div className="details-dropdown" ref={detailsRef}>
-                  <h4>Time Taken:</h4>
+                  <h4> <img src={counter} alt='counter Icon' className='icon' /> Time Taken:</h4>
                   <p>{formatTime(timeTaken)}</p>
-                  <h4>Score:</h4>
+                  <h4> <img src={score} alt='score Icon' className='icon' /> Score:</h4>
                   <p>{results.score} / {quizCards.length}</p>
-                  <h4>Answered Questions:</h4>
+                  <h4><img src={answered} alt='answered Icon' className='icon' /> Answered Questions:</h4>
                   <p>{results.answered}</p>
-                  <h4>Unanswered Questions:</h4>
+                  <h4><img src={unanswered} alt='unanswered Icon' className='icon' /> Unanswered Questions:</h4>
                   <p>{results.unanswered}</p>
-                  <h4>Correct Questions:</h4>
+                  <h4> <img src={correct} alt='correct Icon' className='icon' /> Correct Questions:</h4>
                   <p>{results.correct}</p>
-                  <h4>Incorrect Questions:</h4>
+                  <h4> <img src={incorrect} alt='incorrect Icon' className='icon' /> Incorrect Questions:</h4>
                   <p>{results.incorrect}</p>
                   <hr />
                   <div className="submit-button-container">
@@ -282,9 +331,11 @@ instructions before submission
         <div className="ques-container-row">
           {quizCards.map((quesVal) => (
             <div className="ques-card" key={quesVal.id}>
+              <div className='pack-h4-marks'>
               <h4>
                 {quesVal.id}. {quesVal.question}
-              </h4>
+              </h4> <span className='points'>Points: 1</span>
+              </div>
               <div className="options-container">
                 {quesVal.options.map((option, index) => (
                   <label
@@ -309,6 +360,9 @@ instructions before submission
                   </label>
                 ))}
               </div>
+              {isSubmitted && (
+              <p ><b>Reason: </b>{quesVal.description}</p>
+              )}
             </div>
           ))}
         </div>
@@ -333,6 +387,5 @@ instructions before submission
     </div>
   );
 }
-
 
 export default TestDetails;
