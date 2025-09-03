@@ -4,7 +4,7 @@
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
 }
-
+/**Info section starts**/
 .Info-section {
   display: flex;
   text-align: center;
@@ -23,10 +23,29 @@
   top: 3rem;
   z-index: 30;
 }
-
+/**After submission Info section**/
 .Info-section--submitted {
   overflow-y: auto;
 }
+  /* Custom Scrollbar Styling */
+  .Info-section::-webkit-scrollbar {
+    width: 8px; 
+  }
+
+  .Info-section::-webkit-scrollbar-track {
+    background: #f0fbfc; 
+    border-radius: 10px;
+    margin: 5px 0; 
+  }
+
+  .Info-section::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #5f8ee694, #9795fd94); 
+/****************************************************************************************************************************************************************************************************************************************************Take quiz file mei bhi yehi styling add krni hai, dono files ki scroller same honi chahiye. */
+    border-radius: 10px;
+  }
+  .Info-section::-webkit-scrollbar-thumb:hover {
+    background: #6fa1cfda; 
+  }
 
 .Info-section h2 {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
@@ -43,12 +62,36 @@
   background-color: #e3f0f0ff;
   opacity: 0.9;
 }
-
+/**for inner headings and paragraphs**/
 .Info-group {
   margin-bottom: clamp(12px, 1.5vw, 15px);
+  color: #253d5f;
+  text-shadow: 0 0.2px 1.2px #378ca1ff;
 }
+.Info-group p{
+  color: #306694;
+  text-shadow: 0 0.5px 1.6px #206779ff;
+  
+}
+/**for icons**/
+.icon {
 
+  width: 1.4rem;
+  height: 1.4rem;
+  vertical-align: middle;
+}
+/**For packing h4 and p in one div**/
+.pack-h4-p{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+/***For button styling**/
 button {
+  width: 200px;
+  height: 50px;
   color: white;
   border-radius: 30px;
   padding: 0.8rem 1rem;
@@ -57,14 +100,20 @@ button {
   margin-bottom: 10px;
   cursor: pointer;
 }
+button:hover{
+  background: #5188b8ff;
+  transform: translateY(-2px);
+}
 
+/**Info section ends**/
+/**Main section starts**/
 .test-submission-section {
   flex-grow: 1;
   padding: clamp(15px, 3vw, 20px);
   text-align: center;
   min-height: 100vh;
 }
-
+/**For header**/
 .test-submission-header {
   display: flex;
   justify-content: space-between;
@@ -91,7 +140,7 @@ button {
   flex: 1;
   text-align: center;
 }
-
+/**for quiz questions container**/
 .ques-container-row {
   display: block;
   text-align: left;
@@ -119,19 +168,39 @@ button {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.ques-card h3 {
-  font-size: clamp(1.2em, 3vw, 1.4em);
+.ques-card h4 {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   margin-bottom: 8px;
   font-weight: 600;
   color: #2f415a;
+}
+/**for packing h4  (questions ) and marks in one div**/
+.pack-h4-marks{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/**For marks styling**/
+.points{
+  font-size: clamp(0.85em, 1vw, 0.9em);
+  color: #0d8f4eff;
+  background-color: #ebf4fcff;
+  backdrop-filter: blur(8px);
+  padding: 0.2rem 0.6rem;
+  border-radius: 1.3rem;
+  font-weight: 600;
 }
 
 .ques-card p {
   margin: 6px 0;
   font-size: clamp(0.9em, 1vw, 1em);
   color: #253d5f;
+  background-color: #ebf4fcff;
+  backdrop-filter: blur(8px);
+  padding: 1rem 1.2rem;
+  border-radius: 30px;
 }
-
+/***for options container**/
 .options-container {
   display: flex;
   flex-direction: column;
@@ -142,7 +211,7 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: clamp(0.9em, 1vw, 1em);
+  font-size: clamp(0.9rem, 1vw, 1rem);
   color: #253d5f;
   cursor: pointer;
   padding: 5px;
@@ -163,6 +232,7 @@ button {
   margin: 0;
 }
 
+/**after submission the popup**/
 .submission-popup {
   position: fixed;
   top: 0;
@@ -195,13 +265,17 @@ button {
 .popup-content button {
   padding: clamp(8px, 2vw, 10px) clamp(16px, 2vw, 20px);
   font-size: clamp(0.9em, 2vw, 1em);
-}
+}/**submission popup ends**/
 
+/**mainsection ends**/
+
+/**for mobile info section**/
 .mobile-info-section {
   display: none;
 }
-
+/**toggle button styling (quiz details button)**/
 .details-toggle {
+  
   padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px);
   background-color: #306694;
   color: white;
@@ -222,16 +296,37 @@ button {
 .details-dropdown {
   position: absolute;
   top: 100%;
+  height: 50vh;
+  overflow-y: auto;
   background-color: #8ec4c5e0;
   border: 1px solid #d4f8f8d7;
   border-radius: 10px;
   padding: clamp(10px, 1.5vw, 12px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 40;
+  z-index: 10;
   width: clamp(200px, 50vw, 280px);
   text-align: center;
 }
+/* Custom Scrollbar Styling for details-dropdown */
+.details-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
 
+.details-dropdown::-webkit-scrollbar-track {
+  background: #f0fbfc;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.details-dropdown::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #126f8ba6, #5da3c4a6, #126f8ba6);
+  border-radius: 10px;
+}
+
+.details-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #6fa1cfda;
+}
+/***scroller styling ends**/
 .details-dropdown h4 {
   font-size: clamp(1em, 2vw, 1.1em);
   color: #306694;
@@ -258,6 +353,7 @@ button {
   flex-direction: column;
   gap: 10px;
 }
+//****Responsiveness********///
 
 @media(max-width: 1400px) {
   .ques-card {
@@ -274,6 +370,7 @@ button {
 @media (max-width: 1024px) {
   .Info-section {
     width: clamp(200px, 20vw, 240px);
+    
     min-width: 200px;
   }
   .ques-card {
@@ -281,6 +378,11 @@ button {
   }
   .bottom-submit-button {
     display: none;
+
+  }
+  button{
+    width: 140px;
+    height: 50px;
   }
 }
 
@@ -297,28 +399,44 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: clamp(10px, 2vw, 15px);
-    padding: clamp(10px, 2vw, 15px);
-    background-color: #f0fbfc94;
+    margin-bottom: clamp(4px, 2vw, 8px);
+    padding: clamp(0.3rem, 2vw, 0.5rem);
+    background-color: #f0fbfcda;
     border-radius: 10px;
+    position: sticky;
+    top: calc(9rem + 10px);
+    z-index: 30;
   }
-
+/**for left side no. of questions and time left**/
   .mobile-info-left {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    
   }
 
   .mobile-info-left h4 {
-    font-size: clamp(0.9em, 2vw, 1em);
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: #306694;
     font-weight: 600;
   }
-
+/**for right side instructions **//
   .mobile-info-right {
     position: relative;
   }
-
+  
+  .mobile-info-right p{
+    font-size: clamp(0.85rem, 1.5vw, 1rem)
+  }
+.submit-button-container{
+  display: flex;
+  align-items: center;
+  
+}
+  button{
+    width: 200px;
+    height: 50px;
+  }
+/**
   .instructions-toggle {
     padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px);
     background-color: #306694;
@@ -346,7 +464,7 @@ button {
     border-radius: 10px;
     padding: clamp(10px, 1.5vw, 12px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 40;
+    z-index: 10;
     width: clamp(200px, 50vw, 280px);
   }
 
@@ -354,13 +472,13 @@ button {
     font-size: clamp(0.8em, 2vw, 0.9em);
     color: #2f415a;
     margin: 8px 0;
-  }
-
+  }*/
+/**cards**/
   .ques-card {
     width: 100%;
     max-width: 100%;
   }
-
+/**main sections**/
   .test-submission-main-section {
     padding: clamp(12px, 2vw, 15px);
     position: relative;
@@ -373,7 +491,7 @@ button {
     position: sticky;
     top: calc(3.5rem + 10px);
   }
-
+/**for submit button at bottom**/
   .bottom-submit-button {
     text-align: center;
     margin-top: 20px;
@@ -385,9 +503,17 @@ button {
   .mobile-info-section {
     flex-direction: row;
     gap: 10px;
+   /* position: sticky;
+    top: calc(8.5rem + 10px);
+    z-index: 30;*/
+  }
+  .details-toggle{
+    
+    font-size: clamp(0.75em, 2vw, 0.8em);
+    padding: clamp(0.7rem, 1vw, 0.75rem) clamp(0.8rem, 2vw, 1rem);
   }
 
-  .instructions-dropdown, .details-dropdown {
+   .details-dropdown {
     width: clamp(180px, 80vw, 260px);
   }
 
@@ -397,5 +523,17 @@ button {
 
   .ques-card {
     width: 100%;
+  }
+  .ques-card h4 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+  .options-container {
+    font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  }
+  .ques-card p {
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+  }
+  .points{
+    font-size: clamp(0.75em, 2vw, 0.8em);
   }
 }
